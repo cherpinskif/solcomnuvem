@@ -1,8 +1,6 @@
 document.getElementById("consultaCidade").onclick = function(){
 
 	let cidade = document.getElementById("cidade").value;
-    let estado = document.getElementById("estado").value;
-    let pais = document.getElementById("pais").value;
 	    
     const options = {
         method: 'GET',
@@ -42,18 +40,18 @@ document.getElementById("consultaCidade").onclick = function(){
                         margin: 0;
                         padding: 0;
                         box-sizing: border-box;
-                        }
-
-                        body{
+                      }
+                      
+                      body{
                         position: relative;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         height: 1hv;
                         width: auto;
-                        }
-
-                        .divisaotopo{
+                      }
+                      
+                      .divisaotopo{
                         position: absolute;
                         display: flex;
                         justify-content: center;
@@ -63,10 +61,9 @@ document.getElementById("consultaCidade").onclick = function(){
                         padding: 20px;
                         height: 130px;
                         width: 100%;
-                        border: 1px solid red;
-                        }
-
-                        .info{
+                      }
+                      
+                      .info{
                         position: relative;
                         display: flex;
                         justify-content: center;
@@ -75,14 +72,13 @@ document.getElementById("consultaCidade").onclick = function(){
                         left:0;
                         top:0;
                         margin: 5px;
-                        }
-
-                        input{
+                      }
+                      
+                      input{
                         margin: 5px;
-                        }
-
-
-                        .divisaocentral{
+                      }
+                      
+                      .divisaocentral{
                         position: absolute;
                         display: flex;
                         justify-content: center;
@@ -93,10 +89,9 @@ document.getElementById("consultaCidade").onclick = function(){
                         padding: 20px;
                         height: 400px;
                         width: 100%;
-                        border: 1px solid red;
-                        }
-
-                        .container{
+                      }
+                      
+                      .container{
                         position: absolute;
                         display: flex;
                         justify-content: center;
@@ -105,13 +100,13 @@ document.getElementById("consultaCidade").onclick = function(){
                         height: 300px;
                         width: 330px;
                         margin: 20px;
-                        background: rgb(2, 33, 62);
+                        background: rgb(57, 152, 241);
                         animation: raio linear infinite;
                         border-bottom: 1px solid green;
                         filter: blur(3px);
-                        }
-
-                        .container-2{
+                      }
+                      
+                      .container-2{
                         position: absolute;
                         display: flex;
                         justify-content: center;
@@ -120,19 +115,19 @@ document.getElementById("consultaCidade").onclick = function(){
                         margin: 20px;
                         height: 300px;
                         width: 330px;
-                        }
-
-                        .nuvem{
+                      }
+                      
+                      .nuvem{
                         display: flex;
                         position: absolute;
-                        top:220px;
+                        top:120px;
                         width: 320px;
                         height: 100px;
                         background: #fff;
                         border-radius: 50px; 
-                        }
-
-                        .nuvem::before {
+                      }
+                      
+                      .nuvem::before {
                         display: flex;
                         position: absolute;
                         top: -50%;
@@ -143,9 +138,9 @@ document.getElementById("consultaCidade").onclick = function(){
                         background-color: #fff;
                         border-radius: 50%;
                         box-shadow: 90px 0 0 30px #fff;
-                        }
-
-                        .sol{
+                      }
+                      
+                      .sol{
                         display: flex;
                         position: absolute;
                         top: 10%;
@@ -157,27 +152,27 @@ document.getElementById("consultaCidade").onclick = function(){
                         box-shadow: 0 0 20px 0px rgb(230, 212, 51) ;
                         animation: ensolarado 3s infinite;
                         transition: ensolarado 3s ease;
-                        }
-
-                        @keyframes ensolarado{
+                      }
+                      
+                      @keyframes ensolarado{
                         0%{
-                            box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
+                          box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
                         }
                         50%{
-                            box-shadow: 0 0 30px 20px rgb(230, 212, 51) ;
+                          box-shadow: 0 0 30px 20px rgb(230, 212, 51) ;
                         }
                         100%{
-                            box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
+                          box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
                         }
-                        }
-
-                        .lua{
+                      }
+                      
+                      .lua{
                         display: none;
-                        }
-
-                        .estrelas{
+                      }
+                      
+                      .estrelas{
                         display: none;
-                        }
+                      }
                         `;
                         document.head.appendChild(style);
 
