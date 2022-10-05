@@ -13,7 +13,7 @@ body{
   width: auto;
 }
 
-.divisaotopo{
+.divisaocabecalho{
   position: absolute;
   display: flex;
   justify-content: center;
@@ -43,7 +43,15 @@ h1{
   margin: 5px;
 }
 
-input, label{
+input{
+  margin: 5px;
+  border-radius: 10px;
+  border-width: 2px;
+  font-family:'Segoe UI';
+  width: 180px;
+}
+
+label{
   margin: 5px;
   border-radius: 10px;
   font-family:'Segoe UI';
@@ -51,8 +59,10 @@ input, label{
 
 button{
   border-radius: 10px;
+  border: 0px;
   width: 100px;
   height: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
   
 }
 
@@ -150,4 +160,20 @@ button{
 
 .estrelas{
   display: none;
+}
+
+.divisaorodape{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top:530px;
+  margin: 0px;
+  padding: 10px;
+  height: 400px;
+  width: 100%;
+}
+
+.proximosdias{
+  font-size: 10px;
+
 }
