@@ -18,11 +18,18 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   top:0px;
   margin: 20px;
   padding: 20px;
   height: 130px;
   width: 100%;
+}
+
+h1{
+  font-size: 20px;
+  font-family:'Segoe UI';
+  text-align: center;
 }
 
 .info{
@@ -36,8 +43,17 @@ body{
   margin: 5px;
 }
 
-input{
+input, label{
   margin: 5px;
+  border-radius: 10px;
+  font-family:'Segoe UI';
+}
+
+button{
+  border-radius: 10px;
+  width: 100px;
+  height: 20px;
+  
 }
 
 .divisaocentral{

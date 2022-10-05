@@ -179,13 +179,15 @@ document.getElementById("consultaCidade").onclick = function(){
                 }
                 
 
-        fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&tempunit=C&periods=8&dataset=full', options)
+        fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&tempunit=C&periods=12&dataset=full', options)
         .then(response => response.json())
         .then(response => info(response))
         .catch(err => console.error(err));
 
         function info(dadosdosdias){
             console.log(dadosdosdias);
+
+            
     
 }
 }
