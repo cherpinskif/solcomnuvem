@@ -20,7 +20,169 @@ document.getElementById("consultaCidade").onclick = function(){
     
     function localizacao(dados){
       
-      let id = dados.locations[0].id;              
+      let id = dados.locations[0].id;
+
+        fetch('https://foreca-weather.p.rapidapi.com/current/'+id+'?alt=0&tempunit=C&lang=pt', options)
+            .then(response => response.json())
+            .then(response => info(response))
+            .catch(err => console.error(err));
+
+            function info(dadoscidade){
+                
+                let label = document.querySelector('#label');
+                let situacaoatual = dadoscidade.current.symbolPhrase;
+                label.innerHTML = `Situação atual do tempo: ${situacaoatual}`
+
+                if (situacaoatual = "encoberto"){
+                    
+                    var style = document.createElement('style');
+                      style.innerHTML = 
+                      `
+                      *{
+                        margin: 0;
+                        padding: 0;
+                        box-sizing: border-box;
+                        }
+
+                        body{
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 1hv;
+                        width: auto;
+                        }
+
+                        .divisaotopo{
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        top:0px;
+                        margin: 20px;
+                        padding: 20px;
+                        height: 130px;
+                        width: 100%;
+                        border: 1px solid red;
+                        }
+
+                        .info{
+                        position: relative;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        left:0;
+                        top:0;
+                        margin: 5px;
+                        }
+
+                        input{
+                        margin: 5px;
+                        }
+
+
+                        .divisaocentral{
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        top:130px;
+                        margin: 20px;
+                        padding: 20px;
+                        height: 400px;
+                        width: 100%;
+                        border: 1px solid red;
+                        }
+
+                        .container{
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        top:0px;
+                        height: 300px;
+                        width: 330px;
+                        margin: 20px;
+                        background: rgb(2, 33, 62);
+                        animation: raio linear infinite;
+                        border-bottom: 1px solid green;
+                        filter: blur(3px);
+                        }
+
+                        .container-2{
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        top:0px;
+                        margin: 20px;
+                        height: 300px;
+                        width: 330px;
+                        }
+
+                        .nuvem{
+                        display: flex;
+                        position: absolute;
+                        top:220px;
+                        width: 320px;
+                        height: 100px;
+                        background: #fff;
+                        border-radius: 50px; 
+                        }
+
+                        .nuvem::before {
+                        display: flex;
+                        position: absolute;
+                        top: -50%;
+                        left: 15%;
+                        content: '';
+                        width: 110px;
+                        height: 110px;
+                        background-color: #fff;
+                        border-radius: 50%;
+                        box-shadow: 90px 0 0 30px #fff;
+                        }
+
+                        .sol{
+                        display: flex;
+                        position: absolute;
+                        top: 10%;
+                        left: 50px;
+                        width: 100px;
+                        height: 100px;
+                        background: rgb(230, 212, 51);
+                        border-radius: 100px;
+                        box-shadow: 0 0 20px 0px rgb(230, 212, 51) ;
+                        animation: ensolarado 3s infinite;
+                        transition: ensolarado 3s ease;
+                        }
+
+                        @keyframes ensolarado{
+                        0%{
+                            box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
+                        }
+                        50%{
+                            box-shadow: 0 0 30px 20px rgb(230, 212, 51) ;
+                        }
+                        100%{
+                            box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
+                        }
+                        }
+
+                        .lua{
+                        display: none;
+                        }
+
+                        .estrelas{
+                        display: none;
+                        }
+                        `;
+                        document.head.appendChild(style);
+
+                }
+                
 
         fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&tempunit=C&periods=8&dataset=full', options)
         .then(response => response.json())
@@ -33,4 +195,5 @@ document.getElementById("consultaCidade").onclick = function(){
 }
 }
 
+}
 }
