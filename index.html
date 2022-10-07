@@ -10,17 +10,90 @@
 <body class="body" id="body">
    
   
-  <div class="divisaocabecalho">
-    <h1>Veja o previsão do tempo na sua cidade</h1>
-    <div class="info">
-      <input type="text" name="" id="cidade" style="text-align:center ;" placeholder="Informe sua Cidade">
-      <button id="consultaCidade">Clique</button>
-      <label for="" id="label">Situação atual do tempo:</label>
+  <div class="divCabecalho">
+    <h1 class="elementoDivCabecalho">Veja o previsão do tempo na sua cidade</h1>
+    <div class="infoInputDivCabecalho">
+      <input class="elementoDivCabecalho labelDivCabecalho" type="text" id="inputCidade" placeholder="Informe sua Cidade">
+      <button class="elementoDivCabecalho botaoDivCabecalho" id="consultaCidade">Clique</button>
     </div>
+    <div class="infoLabelDivCabecalho"></div>
+      <label class="elementoDivCabecalho labelDivCabecalho" id="nomeCidade"></label>
+      <label class="elementoDivCabecalho labelDivCabecalho" id="tempAtual"></label>
+      <label class="elementoDivCabecalho labelDivCabecalho" id="prevagora"></label>
+      <label class="elementoDivCabecalho labelDivCabecalho" id="sitAtual"></label>
+      <p>
+      <label class="elementoDivCabecalho labelDivCabecalho" id="maxTemp"></label>
+      <label class="elementoDivCabecalho labelDivCabecalho" id="minTemp"></label>
+      </p>
+    </div>
+    </div>
+      
   </div>
 
-  <div class="divisaocentral">
-        <div class="container" id="container"></div>
+  <div class="divCentral">
+        <div class="containerDivCentral" id="containerDivCentral">
+          
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura0"></div>
+            <div class="scrollIcone" id="icone0"></div>
+            <div class="scrollHora" id="temperaturaHora0"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura1"></div>
+            <div class="scrollIcone" id="icone1"></div>
+            <div class="scrollHora" id="temperaturaHora1"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura2"></div>
+            <div class="scrollIcone" id="icone2"></div>
+            <div class="scrollHora" id="temperaturaHora2"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura3"></div>
+            <div class="scrollIcone" id="icone3"></div>
+            <div class="scrollHora" id="temperaturaHora3"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura4"></div>
+            <div class="scrollIcone" id="icone4"></div>
+            <div class="scrollHora" id="temperaturaHora4"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura5"></div>
+            <div class="scrollIcone" id="icone5"></div>
+            <div class="scrollHora" id="temperaturaHora5"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura6"></div>
+            <div class="scrollIcone" id="icone6"></div>
+            <div class="scrollHora" id="temperaturaHora6"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura7"></div>
+            <div class="scrollIcone" id="icone7"></div>
+            <div class="scrollHora" id="temperaturaHora7"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura8"></div>
+            <div class="scrollIcone" id="icone8"></div>
+            <div class="scrollHora" id="temperaturaHora8"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura9"></div>
+            <div class="scrollIcone" id="icone9"></div>
+            <div class="scrollHora" id="temperaturaHora9"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura10"></div>
+            <div class="scrollIcone" id="icone10"></div>
+            <div class="scrollHora" id="temperaturaHora10"></div>
+          </div>
+          <div class="scrollLateralDivCentral">
+            <div class="scrollTemperatura" id="horaTemperatura11"></div>
+            <div class="scrollIcone" id="icone11"></div>
+            <div class="scrollHora" id="temperaturaHora11"></div>
+          </div>
+
         <div class="container-2" id="container-2">
           <div class="sol" id="sol"></div>
           <div class="lua" id="lua"></div>
@@ -57,13 +130,14 @@
           </div>
         </div>
   </div>
-
-  <div class="divisaorodape">
+        </div>
+  <div class="divisaoRodape">
     <label for="" class="proximosdias"></label>
   </div>
 
 
 
 <script src="index.js"></script>
+<script src="https://kit.fontawesome.com/99c7a2ca8d.js" crossorigin="anonymous"></script>
 </body>
 </html>

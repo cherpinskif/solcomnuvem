@@ -1,6 +1,6 @@
 document.getElementById("consultaCidade").onclick = function(){
 
-	let cidade = document.getElementById("cidade").value;
+	let cidade = document.getElementById("inputCidade").value;
 	    
     const options = {
         method: 'GET',
@@ -17,8 +17,9 @@ document.getElementById("consultaCidade").onclick = function(){
     .catch(erro => console.error(erro))
     
     function localizacao(dados){
-      
+     
       let id = dados.locations[0].id;
+      
 
         fetch('https://foreca-weather.p.rapidapi.com/current/'+id+'?alt=0&tempunit=C&lang=pt', options)
             .then(response => response.json())
@@ -27,14 +28,7 @@ document.getElementById("consultaCidade").onclick = function(){
 
             function info(dadoscidade){
                 
-                let label = document.querySelector('#label');
-                let situacaoatual = dadoscidade.current.symbolPhrase;
-                label.innerHTML = 
-                `Situação atual do tempo: ${situacaoatual}
-                <br> 
-                Temperatura atual: ${dadoscidade.current.temperature}ºC
-                `
-
+              
                 if (situacaoatual = "encoberto"){
                     
                     var style = document.createElement('style');
@@ -51,131 +45,171 @@ document.getElementById("consultaCidade").onclick = function(){
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        height: 1hv;
+                        height: 600px;
                         width: auto;
                       }
                       
-                      .divisaotopo{
+                      /*------------------------------------------------*/
+                      /*------------------------------------------------*/
+                      
+                      /*------------Area - divCabecalho---------*/
+                      .divCabecalho{
                         position: absolute;
                         display: flex;
-                        justify-content: center;
+                        justify-content: start;
                         align-items: center;
-                        top:0px;
-                        margin: 20px;
+                        flex-direction: column;
+                        top:0%;
                         padding: 20px;
-                        height: 130px;
+                        height: 43%;
                         width: 100%;
                       }
                       
-                      .info{
+                      .infoInputDivCabecalho{
                         position: relative;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         flex-direction: column;
-                        left:0;
-                        top:0;
-                        margin: 5px;
+                        width: 100%;
+                        margin-top: 10px;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        
                       }
                       
-                      input{
-                        margin: 5px;
-                      }
-                      
-                      .divisaocentral{
+                      .infoLabelDivCabecalho{
                         position: absolute;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         flex-direction: column;
-                        top:130px;
-                        margin: 20px;
-                        padding: 20px;
-                        height: 400px;
                         width: 100%;
+                        
                       }
                       
-                      .container{
-                        position: absolute;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        top:0px;
-                        height: 300px;
-                        width: 330px;
-                        margin: 20px;
-                        background: rgb(57, 152, 241);
-                        animation: raio linear infinite;
-                        border-bottom: 1px solid green;
-                        filter: blur(3px);
+                      /*-----------Elementos - divCabecalho---------*/
+                      
+                      .elementoDivCabecalho{
+                        font-family:'Segoe UI';
+                        text-align: center;
                       }
                       
-                      .container-2{
-                        position: absolute;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        top:0px;
-                        margin: 20px;
-                        height: 300px;
-                        width: 330px;
+                      h1{
+                        font-size: 18px;
                       }
                       
-                      .nuvem{
-                        display: flex;
-                        position: absolute;
-                        top:120px;
-                        width: 320px;
-                        height: 100px;
-                        background: #fff;
-                        border-radius: 50px; 
+                      #inputCidade{
+                        border-radius: 10px;
+                        border-width: 2px;
+                        font-family:'Segoe UI';
+                        width: 180px;
+                        margin-bottom: 7px;
                       }
                       
-                      .nuvem::before {
-                        display: flex;
-                        position: absolute;
-                        top: -50%;
-                        left: 15%;
-                        content: '';
-                        width: 110px;
-                        height: 110px;
-                        background-color: #fff;
-                        border-radius: 50%;
-                        box-shadow: 90px 0 0 30px #fff;
-                      }
-                      
-                      .sol{
-                        display: flex;
-                        position: absolute;
-                        top: 10%;
-                        left: 50px;
+                      #consultaCidade{
+                        border-radius: 10px;
+                        border: 0px;
                         width: 100px;
-                        height: 100px;
-                        background: rgb(230, 212, 51);
-                        border-radius: 100px;
-                        box-shadow: 0 0 20px 0px rgb(230, 212, 51) ;
-                        animation: ensolarado 3s infinite;
-                        transition: ensolarado 3s ease;
+                        height: 20px;
+                        box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
                       }
                       
-                      @keyframes ensolarado{
-                        0%{
-                          box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
-                        }
-                        50%{
-                          box-shadow: 0 0 30px 20px rgb(230, 212, 51) ;
-                        }
-                        100%{
-                          box-shadow: 0 0 10px 5px rgb(230, 212, 51) ;
-                        }
+                      #nomeCidade{
+                        font-size: 25px;
+                        margin-top: -15px;
                       }
                       
-                      .lua{
-                        display: none;
+                      #tempAtual{
+                        font-size: 32px;
                       }
                       
-                      .estrelas{
-                        display: none;
+                      .labelDivCabecalho{
+                        margin: 0px;
+                      }
+                      
+                      #consultaCidade:hover{
+                        background: gray;
+                      }
+                      
+                      /*-----------------------------------------------*/
+                      /*-----------------------------------------------*/
+                      
+                      /*------------Area - divCentral---------*/
+                      .divCentral{
+                        position: absolute;
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                        flex-direction: column;
+                        top:43%;
+                        margin: 0px;
+                        padding: 10px;
+                        height: 33%;
+                        width: 100%;
+                        border: 1px solid red;
+                      }
+                      
+                      .containerDivCentral{
+                        display: flex;
+                        flex-direction: row;
+                          
+                        overflow-x:auto;
+                        overscroll-behavior-inline: contain;
+                      
+                        text-align: center;
+                        top:0px;
+                        height: 150px;
+                        width: 330px;
+                        border: 1px solid black;
+                        border-radius: 10px;
+                      }
+                      
+                      /*-----------Elementos - divCabecalho---------*/
+                      
+                      .scrollTemperatura,
+                      .scrollIcone,
+                      .scrollHora
+                      {
+                        display: grid;
+                        grid-auto-flow: column;
+                        place-content: center;
+                        background: rgb(64, 64, 64);
+                        color: white;
+                        width: 120px;
+                        padding: 3px;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        font-size: 11px;
+                        height: 100%;
+                      }
+                      
+                      .scrollLateralDivCentral{
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        font-size: 20px;
+                        
+                      }
+                      
+                      /*-----------------------------------------------*/
+                      /*-----------------------------------------------*/
+                      .divisaoRodape{
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        top:76%;
+                        padding: 10px;
+                        height: 200px;
+                        width: 100%;
+                        border: 1px solid red;
+                      }
+                      
+                      .proximosdias{
+                        position: absolute;
+                        font-size: 10px;
+                      
                       }
                         `;
                         document.head.appendChild(style);
@@ -191,42 +225,60 @@ document.getElementById("consultaCidade").onclick = function(){
         function info(dadosdosdias){
             console.log(dadosdosdias);
             console.log(dadoscidade);
+            console.log(dados.locations[0]);
+
+           
+            let prevagora = document.querySelector('#prevagora');
+            let situacaoatual = dadoscidade.current.symbolPhrase;
+            let nomeCidade = document.querySelector('#nomeCidade');
+            let tempAtual = document.querySelector('#tempAtual');
+            let maxTemp = document.querySelector('#maxTemp');
+            let minTemp = document.querySelector('#minTemp');
+
+            let letraMaiuscula = situacaoatual.charAt(0).toUpperCase()+situacaoatual.slice(1); 
+
+            nomeCidade.innerHTML = `${dados.locations[0].name}`;
+            tempAtual.innerHTML = `${dadoscidade.current.temperature}º`;
+            prevagora.innerHTML = `${letraMaiuscula}`;
+            maxTemp.innerHTML = `Máx.: ${dadosdosdias.forecast[0].maxTemp}º`;
+            minTemp.innerHTML = `Mín.: ${dadosdosdias.forecast[0].minTemp}º`;
+            
             
             var data00 = new Date (dadosdosdias.forecast[0].date);
-            var data0 = ((data00.getDate() )) + "/" + ((data00.getMonth() + 1))
+            var data0 = ((data00.getDate() + 1 )) + "/" + ((data00.getMonth() + 1))
   
             var data01 = new Date (dadosdosdias.forecast[1].date);
-            var data1 = ((data01.getDate() )) + "/" + ((data01.getMonth() + 1))
+            var data1 = ((data01.getDate() + 1 )) + "/" + ((data01.getMonth() + 1))
   
             var data02 = new Date (dadosdosdias.forecast[2].date);          
-            var data2 = ((data02.getDate() )) + "/" + ((data02.getMonth() + 1))
+            var data2 = ((data02.getDate() + 1 )) + "/" + ((data02.getMonth() + 1))
 
             var data03 = new Date (dadosdosdias.forecast[3].date);
-            var data3 = ((data03.getDate() )) + "/" + ((data03.getMonth() + 1))
+            var data3 = ((data03.getDate() + 1 )) + "/" + ((data03.getMonth() + 1))
   
             var data04 = new Date (dadosdosdias.forecast[4].date);
-            var data4 = ((data04.getDate() )) + "/" + ((data04.getMonth() + 1))
+            var data4 = ((data04.getDate() + 1 )) + "/" + ((data04.getMonth() + 1))
   
             var data05 = new Date (dadosdosdias.forecast[5].date);
-            var data5 = ((data05.getDate() )) + "/" + ((data05.getMonth() + 1))
+            var data5 = ((data05.getDate() + 1 )) + "/" + ((data05.getMonth() + 1))
   
             var data06 = new Date (dadosdosdias.forecast[6].date);
-            var data6 = ((data06.getDate() )) + "/" + ((data06.getMonth() + 1))
+            var data6 = ((data06.getDate() + 1 )) + "/" + ((data06.getMonth() + 1))
   
             var data07 = new Date (dadosdosdias.forecast[7].date);
-            var data7 = ((data07.getDate() )) + "/" + ((data07.getMonth() + 1))
+            var data7 = ((data07.getDate() + 1 )) + "/" + ((data07.getMonth() + 1))
   
             var data08 = new Date (dadosdosdias.forecast[8].date);
-            var data8 = ((data08.getDate() )) + "/" + ((data08.getMonth() + 1))
+            var data8 = ((data08.getDate() + 1 )) + "/" + ((data08.getMonth() + 1))
   
             var data09 = new Date (dadosdosdias.forecast[9].date);
-            var data9 = ((data09.getDate() )) + "/" + ((data09.getMonth() + 1))
+            var data9 = ((data09.getDate() + 1 )) + "/" + ((data09.getMonth() + 1))
   
             var data10 = new Date (dadosdosdias.forecast[10].date);
-            var data010 = ((data10.getDate() )) + "/" + ((data10.getMonth() + 1))
+            var data010 = ((data10.getDate() + 1 )) + "/" + ((data10.getMonth() + 1))
   
             var data11 = new Date (dadosdosdias.forecast[11].date);
-            var data011 = ((data11.getDate() )) + "/" + ((data11.getMonth() + 1))
+            var data011 = ((data11.getDate() + 1 )) + "/" + ((data11.getMonth() + 1))
 
             let proximosdias = document.querySelector('.proximosdias');
             proximosdias.innerHTML = 
@@ -257,6 +309,108 @@ document.getElementById("consultaCidade").onclick = function(){
             Dia: ${data011} - Situação: ${dadosdosdias.forecast[11].symbolPhrase} - Max: ${dadosdosdias.forecast[11].maxTemp}ºC - Min: ${dadosdosdias.forecast[11].minTemp}ºC
             `
 
+
+
+        fetch('https://foreca-weather.p.rapidapi.com/forecast/hourly/'+id+'?lang=pt&country=br&alt=0&periods=12&dataset=full&history=0', options)
+        .then(response => response.json())
+        .then(response => hourly(response))
+        .catch(err => console.error(err));
+
+        function hourly(porHora){
+          console.log(porHora.forecast[0]);
+          
+          let hora = new Date(porHora.forecast[0].time).getHours();
+          let hora1 = new Date(porHora.forecast[1].time).getHours();
+          let hora2 = new Date(porHora.forecast[2].time).getHours();
+          let hora3 = new Date(porHora.forecast[3].time).getHours();
+          let hora4 = new Date(porHora.forecast[4].time).getHours();
+          let hora5 = new Date(porHora.forecast[5].time).getHours();
+          let hora6 = new Date(porHora.forecast[6].time).getHours();
+          let hora7 = new Date(porHora.forecast[7].time).getHours();
+          let hora8 = new Date(porHora.forecast[8].time).getHours();
+          let hora9 = new Date(porHora.forecast[9].time).getHours();
+          let hora10 = new Date(porHora.forecast[10].time).getHours();
+          let hora11 = new Date(porHora.forecast[11].time).getHours(); 
+          
+          let horaTemperatura0 = document.querySelector('#horaTemperatura0');
+          let horaTemperatura1 = document.querySelector('#horaTemperatura1');
+          let horaTemperatura2 = document.querySelector('#horaTemperatura2');
+          let horaTemperatura3 = document.querySelector('#horaTemperatura3');
+          let horaTemperatura4 = document.querySelector('#horaTemperatura4');
+          let horaTemperatura5 = document.querySelector('#horaTemperatura5');
+          let horaTemperatura6 = document.querySelector('#horaTemperatura6');
+          let horaTemperatura7 = document.querySelector('#horaTemperatura7');
+          let horaTemperatura8 = document.querySelector('#horaTemperatura8');
+          let horaTemperatura9 = document.querySelector('#horaTemperatura9');
+          let horaTemperatura10 = document.querySelector('#horaTemperatura10');
+          let horaTemperatura11 = document.querySelector('#horaTemperatura11'); 
+
+          horaTemperatura0.innerHTML = `${hora}`
+          horaTemperatura1.innerHTML = `${hora1}`
+          horaTemperatura2.innerHTML = `${hora2}`
+          horaTemperatura3.innerHTML = `${hora3}`
+          horaTemperatura4.innerHTML = `${hora4}`
+          horaTemperatura5.innerHTML = `${hora5}`
+          horaTemperatura6.innerHTML = `${hora6}`
+          horaTemperatura7.innerHTML = `${hora7}`
+          horaTemperatura8.innerHTML = `${hora8}`
+          horaTemperatura9.innerHTML = `${hora9}`
+          horaTemperatura10.innerHTML = `${hora10}`
+          horaTemperatura11.innerHTML = `${hora11}` 
+          
+          
+          let icone0 = document.querySelector('#icone0');
+          icone0.innerHTML = `${porHora.forecast[0].symbolPhrase}`
+          let icone1 = document.querySelector('#icone1');
+          icone1.innerHTML = `${porHora.forecast[1].symbolPhrase}`
+          let icone2 = document.querySelector('#icone2');
+          icone2.innerHTML = `${porHora.forecast[2].symbolPhrase}`
+          let icone3 = document.querySelector('#icone3');
+          icone3.innerHTML = `${porHora.forecast[3].symbolPhrase}`
+           let icone4 = document.querySelector('#icone4');
+          icone4.innerHTML = `${porHora.forecast[4].symbolPhrase}`
+          let icone5 = document.querySelector('#icone5');
+          icone5.innerHTML = `${porHora.forecast[5].symbolPhrase}`
+          let icone6 = document.querySelector('#icone6');
+          icone6.innerHTML = `${porHora.forecast[6].symbolPhrase}`
+          let icone7 = document.querySelector('#icone7');
+          icone7.innerHTML = `${porHora.forecast[7].symbolPhrase}`
+          let icone8 = document.querySelector('#icone8');
+          icone8.innerHTML = `${porHora.forecast[8].symbolPhrase}`
+          let icone9 = document.querySelector('#icone9');
+          icone9.innerHTML = `${porHora.forecast[9].symbolPhrase}`
+          let icone10 = document.querySelector('#icone10');
+          icone10.innerHTML = `${porHora.forecast[10].symbolPhrase}`
+          let icone11 = document.querySelector('#icone11');
+          icone11.innerHTML = `${porHora.forecast[11].symbolPhrase}` 
+          
+
+          let temperaturaHora0 = document.querySelector('#temperaturaHora0');
+          temperaturaHora0.innerHTML = `${porHora.forecast[0].temperature}`
+          let temperaturaHora1 = document.querySelector('#temperaturaHora1');
+          temperaturaHora1.innerHTML = `${porHora.forecast[1].temperature}`
+          let temperaturaHora2 = document.querySelector('#temperaturaHora2');
+          temperaturaHora2.innerHTML = `${porHora.forecast[2].temperature}`
+          let temperaturaHora3 = document.querySelector('#temperaturaHora3');
+          temperaturaHora3.innerHTML = `${porHora.forecast[3].temperature}`
+          let temperaturaHora4 = document.querySelector('#temperaturaHora4');
+          temperaturaHora4.innerHTML = `${porHora.forecast[4].temperature}`
+          let temperaturaHora5 = document.querySelector('#temperaturaHora5');
+          temperaturaHora5.innerHTML = `${porHora.forecast[5].temperature}`
+          let temperaturaHora6 = document.querySelector('#temperaturaHora6');
+          temperaturaHora6.innerHTML = `${porHora.forecast[6].temperature}`
+          let temperaturaHora7 = document.querySelector('#temperaturaHora7');
+          temperaturaHora7.innerHTML = `${porHora.forecast[7].temperature}`
+          let temperaturaHora8 = document.querySelector('#temperaturaHora8');
+          temperaturaHora8.innerHTML = `${porHora.forecast[8].temperature}`
+          let temperaturaHora9 = document.querySelector('#temperaturaHora9');
+          temperaturaHora9.innerHTML = `${porHora.forecast[9].temperature}`
+          let temperaturaHora10 = document.querySelector('#temperaturaHora10');
+          temperaturaHora10.innerHTML = `${porHora.forecast[10].temperature}`
+          let temperaturaHora11 = document.querySelector('#temperaturaHora11');
+          temperaturaHora11.innerHTML = `${porHora.forecast[11].temperature}` 
+
+        }
 }
 }
 
