@@ -122,7 +122,7 @@ h1{
     
   overflow-x:auto;
   overscroll-behavior-inline: contain;
-
+  background: rgb(64, 64, 64);
   text-align: center;
   top:0px;
   height: 150px;
@@ -140,7 +140,7 @@ h1{
   display: grid;
   grid-auto-flow: column;
   place-content: center;
-  background: rgb(64, 64, 64);
+  
   color: white;
   width: 120px;
   padding: 3px;
@@ -157,7 +157,7 @@ h1{
 }
 
 /*-----------------------------------------------*/
-/*-----------------------------------------------
+/*-----------------------------------------------*/
 .divisaoRodape{
   position: absolute;
   display: flex;
@@ -175,4 +175,4 @@ h1{
   position: absolute;
   font-size: 10px;
 
-}*/
+}
