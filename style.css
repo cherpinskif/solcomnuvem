@@ -1,18 +1,19 @@
+body{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  width: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 600px;
-  width: auto;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
 
 /*------------------------------------------------*/
 /*------------------------------------------------*/
@@ -113,7 +114,7 @@ h1{
   padding: 10px;
   height: 33%;
   width: 100%;
-  border: 1px solid red;
+  
 }
 
 .containerDivCentral{
@@ -162,21 +163,64 @@ h1{
 
 /*-----------------------------------------------*/
 /*-----------------------------------------------*/
-.divisaoRodape{
+
+/*------------Area - divRodape---------*/
+.divRodape{
   position: absolute;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   flex-direction: column;
-  top:90%;
+  top:100%;
   padding: 10px;
   height: 200px;
   width: 100%;
-  border: 1px solid red;
+ 
 }
 
-.proximosdias{
+.containerDivRodape{
+  display: flex;
+  flex-direction: column;
+    
+  overflow-y:auto;
+  overscroll-behavior-inline: contain;
+
+  background: rgba(64, 64, 64, 0.232);
+  text-align: center;
+
+  height: 700px;
+  width: 330px;
+  border: 1px solid black;
+  border-radius: 10px;
+  filter: blur(0px);
+}
+.scrollVerticalDivCentral{
   position: absolute;
-  font-size: 10px;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  overflow-x:auto;
+  overscroll-behavior-inline: contain;
 }
+
+.scrollDiaSemana,
+.scrollNuvem{
+  display: flex;
+  justify-content: center;
+  width: 15%;
+}
+
+.scrollTempMin,
+.scrollTempMax{
+  display: flex;
+  justify-content: center;
+  width: 25%;
+}
+
+.scrollBarraTemperatura{
+  display: flex;
+  justify-content: center;
+  width: 20%;
+}
+
