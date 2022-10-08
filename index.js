@@ -1,3 +1,7 @@
+
+
+
+
 document.getElementById("consultaCidade").onclick = function(){
 
 	let cidade = document.getElementById("inputCidade").value;
@@ -27,13 +31,19 @@ document.getElementById("consultaCidade").onclick = function(){
 
             function info(dadoscidade){
                              
-        fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&tempunit=C&periods=12&lang=pt&dataset=full', options)
+        fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&tempunit=C&periods=10&lang=pt&dataset=full', options)
         .then(response => response.json())
         .then(response => info(response))
         .catch(err => console.error(err))
 
         function info(dadosdosdias){
-
+         
+          console.log(dadosdosdias.forecast);
+            let maxTemperatura = [];
+            for (let t of dadosdosdias.forecast){
+              maxTemperatura.push(`${dadosdosdias.forecast[t].MaxTemp}`)
+            }
+          
             let prevagora = document.querySelector('#prevagora');
             let situacaoatual = dadoscidade.current.symbolPhrase;
             let nomeCidade = document.querySelector('#nomeCidade');
@@ -49,7 +59,43 @@ document.getElementById("consultaCidade").onclick = function(){
             maxTemp.innerHTML = `Máx.: ${dadosdosdias.forecast[0].maxTemp}º`;
             minTemp.innerHTML = `Mín.: ${dadosdosdias.forecast[0].minTemp}º`;
 
+/*Área da previsão para os próximos dias*/
 
+            for(periodo = 0; periodo <= 9; periodo++){
+
+              let dia = "dia"+periodo;
+              dia = new Date(dadosdosdias.forecast[periodo].date).getDate()+1;
+
+              let diaDivRodape = "diaDivRodape"+periodo;
+              diaDivRodape = document.querySelector('#diaDivRodape'+periodo);
+              diaDivRodape.innerHTML = `${dia}`;
+
+              let temperaturaMinima = "temperaturaMinima1"+periodo;
+              temperaturaMinima = document.querySelector('#temperaturaMinima'+periodo);
+              temperaturaMinima.innerHTML = `${dadosdosdias.forecast[periodo].minTemp}`
+
+              let temperaturaMaxima = "temperaturaMaxima"+periodo;
+              temperaturaMaxima = document.querySelector('#temperaturaMaxima'+periodo);
+              temperaturaMaxima.innerHTML = `${dadosdosdias.forecast[periodo].maxTemp}`
+
+              let icone = "divIcone"+periodo;
+              icone = document.querySelector('#divIcone'+periodo);
+              icone.innerHTML = `${dadosdosdias.forecast[periodo].symbol}`
+
+              let imagens = ["d000","d100","d200","d300","d400","d500","d600","d210","d310","d410","d220","d320","d420","d430","d240","d340","d440","d211","d311","d411","d221","d321","d421","d431","d212","d312","d412","d222","d322","d422","d432","n000","n100","n200","n300","n400","n500","n600","n210","n310","n410","n220","n320","n420","n430","n240","n340","n440","n211","n311","n411","n221","n321","n421","n431","n212","n312","n412","n222","n322","n422","n432"]
+          
+              for(let simbolo = 0; simbolo <=61; simbolo++){
+                dadosdosdias.forecast[periodo].symbol === imagens[simbolo] ? icone.innerHTML = `<img style="width:40px; height:40px" src="https://developer.foreca.com/static/images/symbols/`+imagens[simbolo]+`.png">` : "-";
+              }
+            
+            }
+           
+
+          }
+            
+
+
+/*fim da previsão para os próximos dias */
 
         fetch('https://foreca-weather.p.rapidapi.com/forecast/hourly/'+id+'?lang=pt&country=br&alt=0&periods=12&dataset=full&history=0', options)
         .then(response => response.json())
@@ -85,9 +131,10 @@ document.getElementById("consultaCidade").onclick = function(){
           }    
           
         }
+
+
 }
 }
 
 }
     
-}
