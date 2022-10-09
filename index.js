@@ -102,7 +102,7 @@ document.getElementById("consultaCidade").onclick = function(){
             horaTemperatura = document.querySelector('#horaTemperatura'+i);
 
             horaTemperatura.innerHTML = `${hora}`;
-          
+            console.log(horaTemperatura);
             let icone = "icone"+i;
             icone = document.querySelector('#icone'+i);
             icone.innerHTML = `${porHora.forecast[i].symbol}`
@@ -141,7 +141,7 @@ document.getElementById("consultaCidade").onclick = function(){
 
             const temperaturaMaximadois = [];
             temperaturaMaximadois[0] = dadosdosdias.forecast[0].maxTemp;
-            temperaturaMaximadois[1] = dadosdosdias.forecast[1].maxTemp;
+             temperaturaMaximadois[1] = dadosdosdias.forecast[1].maxTemp;
             temperaturaMaximadois[2] = dadosdosdias.forecast[2].maxTemp;
             temperaturaMaximadois[3] = dadosdosdias.forecast[3].maxTemp;
             temperaturaMaximadois[4] = dadosdosdias.forecast[4].maxTemp;
@@ -149,12 +149,11 @@ document.getElementById("consultaCidade").onclick = function(){
             temperaturaMaximadois[6] = dadosdosdias.forecast[6].maxTemp;
             temperaturaMaximadois[7] = dadosdosdias.forecast[7].maxTemp;
             temperaturaMaximadois[8] = dadosdosdias.forecast[8].maxTemp;
-            temperaturaMaximadois[9] = dadosdosdias.forecast[9].maxTemp;
+            temperaturaMaximadois[9] = dadosdosdias.forecast[9].maxTemp; 
 
+            
             const temperaturaMinimadois = [];
-           
-            temperaturaMinimadois[0] = dadosdosdias.forecast[0].minTemp;
-            temperaturaMinimadois[1] = dadosdosdias.forecast[1].minTemp;
+            temperaturaMinimadois[0] = dadosdosdias.forecast[0].minTemp;             temperaturaMinimadois[1] = dadosdosdias.forecast[1].minTemp;
             temperaturaMinimadois[2] = dadosdosdias.forecast[2].minTemp;
             temperaturaMinimadois[3] = dadosdosdias.forecast[3].minTemp;
             temperaturaMinimadois[4] = dadosdosdias.forecast[4].minTemp;
@@ -162,12 +161,13 @@ document.getElementById("consultaCidade").onclick = function(){
             temperaturaMinimadois[6] = dadosdosdias.forecast[6].minTemp;
             temperaturaMinimadois[7] = dadosdosdias.forecast[7].minTemp;
             temperaturaMinimadois[8] = dadosdosdias.forecast[8].minTemp;
-            temperaturaMinimadois[9] = dadosdosdias.forecast[9].minTemp;
+            temperaturaMinimadois[9] = dadosdosdias.forecast[9].minTemp; 
 
             console.log(Math.max(...temperaturaMaximadois),Math.min(...temperaturaMinimadois));
 
-            let difTemp = Math.max(...temperaturaMaximadois) - Math.min(...temperaturaMinimadois);
+            let difTemp = Math.max(...temperaturaMaximadois) - Math.min(...temperaturaMinimadois); 
 
+          
             let difTempDia0 = temperaturaMaximadois[0] - dadosdosdias.forecast[0].minTemp;
             let difTempDia1 = temperaturaMaximadois[1] - dadosdosdias.forecast[1].minTemp;
             let difTempDia2 = temperaturaMaximadois[2] - dadosdosdias.forecast[2].minTemp;
@@ -178,27 +178,54 @@ document.getElementById("consultaCidade").onclick = function(){
             let difTempDia7 = temperaturaMaximadois[7] - dadosdosdias.forecast[7].minTemp;
             let difTempDia8 = temperaturaMaximadois[8] - dadosdosdias.forecast[8].minTemp;
             let difTempDia9 = temperaturaMaximadois[9] - dadosdosdias.forecast[9].minTemp;
+             
+            let tamanhoLinhaTemp0 = (difTempDia0/difTemp)*110;
+            let tamanhoLinhaTemp1 = (difTempDia1/difTemp)*110;
+            let tamanhoLinhaTemp2 = (difTempDia2/difTemp)*110;
+            let tamanhoLinhaTemp3 = (difTempDia3/difTemp)*110;
+            let tamanhoLinhaTemp4 = (difTempDia4/difTemp)*110;
+            let tamanhoLinhaTemp5 = (difTempDia5/difTemp)*110;
+            let tamanhoLinhaTemp6 = (difTempDia6/difTemp)*110;
+            let tamanhoLinhaTemp7 = (difTempDia7/difTemp)*110;
+            let tamanhoLinhaTemp8 = (difTempDia8/difTemp)*110;
+            let tamanhoLinhaTemp9 = (difTempDia9/difTemp)*110; 
             
-            console.log(difTempDia0);
+            minTempDia0 = temperaturaMinimadois[0];
+            minTempDia1 = temperaturaMinimadois[1];
+            minTempDia2 = temperaturaMinimadois[2];
+            minTempDia3 = temperaturaMinimadois[3];
+            minTempDia4 = temperaturaMinimadois[4];
+            minTempDia5 = temperaturaMinimadois[5];
+            minTempDia6 = temperaturaMinimadois[6];
+            minTempDia7 = temperaturaMinimadois[7];
+            minTempDia8 = temperaturaMinimadois[8];
+            minTempDia9 = temperaturaMinimadois[9];
 
-            let tamanhoLinhaTemp0 = (difTempDia0/difTemp)*130;
-            let tamanhoLinhaTemp1 = (difTempDia1/difTemp)*130;
-            let tamanhoLinhaTemp2 = (difTempDia2/difTemp)*130;
-            let tamanhoLinhaTemp3 = (difTempDia3/difTemp)*130;
-            let tamanhoLinhaTemp4 = (difTempDia4/difTemp)*130;
-            let tamanhoLinhaTemp5 = (difTempDia5/difTemp)*130;
-            let tamanhoLinhaTemp6 = (difTempDia6/difTemp)*130;
-            let tamanhoLinhaTemp7 = (difTempDia7/difTemp)*130;
-            let tamanhoLinhaTemp8 = (difTempDia8/difTemp)*130;
-            let tamanhoLinhaTemp9 = (difTempDia9/difTemp)*130;
             
-            
-            maxTempDia0 = temperaturaMaximadois[0];
-            maxTemp = dadosdosdias.forecast[0].maxTemp;
-            let posicaoDoDia0 = maxTempDia0/maxTemp*100;
+          
+              minTemp = Math.min(...temperaturaMinimadois); 
+              let posicaoDoDia0 = ((minTempDia1-minTemp)/minTemp*100); 
+              let posicaoDoDia1 = ((minTempDia1-minTemp)/minTemp*100); 
+              let posicaoDoDia2 = ((minTempDia2-minTemp)/minTemp*100); 
+              let posicaoDoDia3 = ((minTempDia3-minTemp)/minTemp*100); 
+              let posicaoDoDia4 = ((minTempDia4-minTemp)/minTemp*100); 
+              let posicaoDoDia5 = ((minTempDia5-minTemp)/minTemp*100); 
+              let posicaoDoDia6 = ((minTempDia6-minTemp)/minTemp*100); 
+              let posicaoDoDia7 = ((minTempDia7-minTemp)/minTemp*100); 
+              let posicaoDoDia8 = ((minTempDia8-minTemp)/minTemp*100); 
+              let posicaoDoDia9 = ((minTempDia9-minTemp)/minTemp*100); 
+              
+              let calc0 = (posicaoDoDia0);
+              let calc1 = (posicaoDoDia1);
+              let calc2 = (posicaoDoDia2);
+              let calc3 = (posicaoDoDia3);
+              let calc4 = (posicaoDoDia4);
+              let calc5 = (posicaoDoDia5);
+              let calc6 = (posicaoDoDia6);
+              let calc7 = (posicaoDoDia7);
+              let calc8 = (posicaoDoDia8);
+              let calc9 = (posicaoDoDia9);
 
-            let calc0 = (posicaoDoDia0-tamanhoLinhaTemp0);
-            
         const style = document.createElement('style');
         style.innerHTML = `
         .pontoTempAtual{
@@ -213,44 +240,23 @@ document.getElementById("consultaCidade").onclick = function(){
           z-index: 1;
           transition: linear 2.4s;
         }
-        #linhaTemp0,
-        #linhaTemp1,
-        #linhaTemp2,
-        #linhaTemp3,
-        #linhaTemp4,
-        #linhaTemp5,
-        #linhaTemp6,
-        #linhaTemp7,
-        #linhaTemp8,
-        #linhaTemp9{
+        #linhaTemp0{
           position: absolute;
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc0+`%;
           width: `+tamanhoLinhaTemp0+`px;
           border: 1px solid ;
           border-radius: 10px;
           background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
         }
-
-        #linhaTemp0,
-        #linhaTemp1,
-        #linhaTemp2,
-        #linhaTemp3,
-        #linhaTemp4,
-        #linhaTemp5,
-        #linhaTemp6,
-        #linhaTemp7,
-        #linhaTemp8,
-        #linhaTemp9{
-          left:`+calc0+`px;
-        }
-
         #linhaTemp1{
           position: absolute;
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc1+`%;
           width: `+tamanhoLinhaTemp1+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -261,6 +267,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc2+`%;
           width: `+tamanhoLinhaTemp2+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -271,6 +278,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc3+`%;
           width: `+tamanhoLinhaTemp3+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -281,6 +289,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc4+`%;
           width: `+tamanhoLinhaTemp4+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -291,6 +300,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc5+`%;
           width: `+tamanhoLinhaTemp5+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -301,6 +311,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc6+`%;
           width: `+tamanhoLinhaTemp6+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -311,6 +322,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc7+`%;
           width: `+tamanhoLinhaTemp7+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -321,6 +333,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc8+`%;
           width: `+tamanhoLinhaTemp8+`px;
           border: 1px solid ;
           border-radius: 10px;
@@ -331,6 +344,7 @@ document.getElementById("consultaCidade").onclick = function(){
           display: flex;
           justify-content: center;
           height: 10px;
+          left:`+calc9+`%;
           width: `+tamanhoLinhaTemp9+`px;
           border: 1px solid ;
           border-radius: 10px;

@@ -108,7 +108,7 @@ h1{
 .divCentral{
   position: absolute;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   top:43%;
@@ -120,14 +120,12 @@ h1{
 }
 
 .containerDivCentral{
+  position: absolute;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   
-    
   overflow-x:auto;
-  overscroll-behavior-inline: contain;
+  overscroll-behavior-inline: auto;
 
   background: rgba(64, 64, 64, 0.232);
   text-align: center;
@@ -218,13 +216,12 @@ h1{
   align-items:center;
   flex-direction: row;
   font-size: 20px;
-  height: 150px;
+  height: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 19px;
   padding-right: 12px;
-  overflow-y: hidden;
-  overflow-x: hidden; 
+
 }
 
 
@@ -257,7 +254,7 @@ h1{
   flex-direction: column;
   top:105%;
   padding: 10px;
-  height: 200px;
+  height: 5px;
   width: 100%;
 }
 
@@ -266,7 +263,7 @@ h1{
   display: flex;
   justify-content: center;
   height: 10px;
-  width: 130px;
+  width: 110px;
   background-color: grey;
   border-radius: 10px;
 }
@@ -315,7 +312,7 @@ h1{
   width: 100%;
   background-color: white;
   border-radius: 10px;
-  z-index: 1;
+  
 }
 
 .divisoria{
@@ -326,5 +323,5 @@ h1{
   width: 87%;
   border-radius: 10px;
   background-color: white;
-  z-index: 1;
+
 }
