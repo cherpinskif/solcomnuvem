@@ -1,8 +1,8 @@
 body{
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh; 
   width: 100%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -21,15 +21,12 @@ body{
 
 /*------------Area - divCabecalho---------*/
 .divCabecalho{
-  position: absolute;
+  position: relative;
   display: flex;
+  top: 0%;
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  top:0%;
-  padding: 20px;
-  height: 43%;
-  width: 100%;
 }
 
 .infoInputDivCabecalho{
@@ -39,19 +36,16 @@ body{
   align-items: center;
   flex-direction: column;
   width: 100%;
-  margin-top: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 15px;
   
 }
 
 .infoLabelDivCabecalho{
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  top:57%;
   width: 100%;
   
 }
@@ -59,6 +53,7 @@ body{
 /*-----------Elementos - divCabecalho---------*/
 
 .elementoDivCabecalho{
+  position: relative;
   font-family:'Segoe UI';
   text-align: center;
 }
@@ -85,6 +80,7 @@ h1{
 }
 
 #nomeCidade{
+  position: relative;
   font-size: 25px;
   margin-top: -15px;
 }
@@ -106,12 +102,11 @@ h1{
 
 /*------------Area - divCentral---------*/
 .divCentral{
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  top:43%;
+  top:0%;
   margin: 0px;
   padding: 10px;
   height: 23%;
@@ -119,10 +114,30 @@ h1{
   
 }
 
-.containerDivCentral{
-  position: absolute;
+.containerScrollLateral{
+  position: relative;
   display: flex;
   flex-direction: row;
+}
+
+.prevhoraria{
+  position: sticky;
+  display: flex;
+  justify-content: left;
+  border-top-right-radius:10px ;
+  border-top-left-radius:10px ;
+  width: 100%;
+  left: 0%;
+  padding-left: 22px;
+  background-color: grey;
+  color: rgb(162, 161, 161);
+  z-index: 1;
+}
+
+.containerDivCentral{
+  position: relative;
+  display: flex;
+  flex-direction: column;
   
   overflow-x:auto;
   overscroll-behavior-inline: auto;
@@ -130,7 +145,7 @@ h1{
   background: rgba(64, 64, 64, 0.232);
   text-align: center;
   top:0px;
-  height: 120px;
+  height: 140px;
   width: 330px;
   border: 0px solid black;
   border-radius: 10px;
@@ -176,7 +191,7 @@ h1{
 
 /*------------Area - divRodape---------*/
 .divRodape{
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -224,7 +239,6 @@ h1{
 
 }
 
-
 .scrollDiaSemana,
 .scrollNuvem{
   display: flex;
@@ -247,7 +261,7 @@ h1{
 }
 
 .linhatemperatura{
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -256,6 +270,7 @@ h1{
   padding: 10px;
   height: 5px;
   width: 100%;
+  z-index: -1;
 }
 
 .linhaMedia{
@@ -269,7 +284,7 @@ h1{
 }
 
 .linhaTemp{
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   height: 10px;
@@ -280,7 +295,7 @@ h1{
 }
 
 .pontoTempAtual{
-  position: absolute;
+  position: relative;
   display: flex;
   top: 0px;
   left: 49%;
@@ -292,11 +307,14 @@ h1{
 }
 
 .prevdezdias{
+  position: sticky;
   display: flex;
   justify-content: left;
+  top:0%;
   padding-left: 22px;
   background-color: grey;
   color: rgb(162, 161, 161);
+  z-index:2 ;
 }
 
 .fa-calendar{
@@ -311,18 +329,18 @@ h1{
   justify-content: center;
   height: 10px;
   width: 100%;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 10px;
   
 }
 
 .divisoria{
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: center;
   height: 1.4px;
   width: 87%;
   border-radius: 10px;
   background-color: white;
-
+  z-index: 1;
 }
