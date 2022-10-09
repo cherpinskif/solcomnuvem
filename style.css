@@ -198,7 +198,7 @@ h1{
   background: rgba(64, 64, 64, 0.232);
   text-align: center;
 
-  height: 700px;
+  height: auto;
   width: 330px;
   border-radius: 10px;
   filter: blur(0px);
