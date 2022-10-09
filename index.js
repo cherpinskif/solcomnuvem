@@ -1,15 +1,175 @@
+const options = {
+  method: 'GET',
+  headers: {
+      'X-RapidAPI-Key': 'a971acd304mshf02c547d61db721p1659b6jsn24258aa44cba',
+      'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com'
+  }
+};
+
+fetch('https://foreca-weather.p.rapidapi.com/location/search/atibaia?lang=pt-br&country=br', options)
+
+fetch('https://foreca-weather.p.rapidapi.com/current/103460598?alt=0&tempunit=C&windunit=MS&lang=pt-br', options)
+.then(dadoscidadeatual => dadoscidadeatual.json())
+.then(dadoscidadeatual => cidadeatual(dadoscidadeatual))
+.catch(err => console.error(err));
+
+        function cidadeatual(dadoscidadeatual){
+
+          console.log(dadoscidadeatual)
+          hora = new Date(dadoscidadeatual.current.time).getHours();
+          
+          // new Date(dadoscidadeatual.current.time).getHours()
+
+        if (hora >= 5 && hora<=18){
+          const style = document.createElement('style');
+        style.innerHTML = `
+        body{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          min-height: 100vh; 
+          width: 100%;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          transition: linear 3s;
+          background-color: rgb(56, 135, 239);
+        }
+        #consultaCidade{
+          border-radius: 20px;
+          border: 0px;
+          width: 150px;
+          height: 30px;
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
+          background-color: white;
+          transition: linear 1s;
+        }
+        .prevhoraria{
+          position: sticky;
+          display: flex;
+          justify-content: left;
+        
+          width: 100%;
+          left: 0%;
+          padding-left: 22px;
+          background-color: white;
+          color: gray;
+          z-index: 1;
+          transition: linear 1s;
+        }
+        .prevdezdias{
+          position: sticky;
+          display: flex;
+          justify-content: left;
+          top:0%;
+          padding-left: 22px;
+          background-color: white;
+          color: gray;
+          z-index:1 ;
+          transition: linear 1s;
+        }
+        .linhaMedia{
+          position: relative;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: 110px;
+          background-color: white;
+          border-radius: 10px;
+          transition: linear 3s;
+        }
+        .linhaTemp{
+          position: relative;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: 100px;
+          border: 1px solid gray;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+          transition: linear 3s;
+        }
+        `
+        ;
+        document.head.appendChild(style);
+        }
+        else{
+          const style = document.createElement('style');
+          style.innerHTML = `
+          }body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh; 
+            width: 100%;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            transition: linear 3s;
+            background-color: rgb(11, 2, 45);
+          }
+          #consultaCidade{
+            border-radius: 20px;
+            border: 0px;
+            width: 150px;
+            height: 30px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
+            background-color: white;
+            transition: linear 1s;
+          }
+          .prevhoraria{
+            position: sticky;
+            display: flex;
+            justify-content: left;
+          
+            width: 100%;
+            left: 0%;
+            padding-left: 22px;
+            background-color: white;
+            color: gray;
+            z-index: 1;
+            transition: linear 1s;
+          }
+          .prevdezdias{
+            position: sticky;
+            display: flex;
+            justify-content: left;
+            top:0%;
+            padding-left: 22px;
+            background-color: white;
+            color: gray;
+            z-index:1 ;
+            transition: linear 1s;
+          }
+          .linhaMedia{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            height: 10px;
+            width: 110px;
+            background-color: white;
+            border-radius: 10px;
+            transition: linear 3s;
+          }
+          .linhaTemp{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            height: 10px;
+            width: 100px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+            transition: linear 3s;
+          }
+          `
+          ;
+          document.head.appendChild(style);
+        }
+
 document.getElementById("consultaCidade").onclick = function(){
 
 	let cidade = document.getElementById("inputCidade").value;
 	    
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'a971acd304mshf02c547d61db721p1659b6jsn24258aa44cba',
-            'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com'
-        }
-    };
-    
+     
     fetch('https://foreca-weather.p.rapidapi.com/location/search/'+cidade+'?lang=pt&country=br', options)
 
     .then(resposta => resposta.json())
@@ -102,7 +262,7 @@ document.getElementById("consultaCidade").onclick = function(){
             horaTemperatura = document.querySelector('#horaTemperatura'+i);
 
             horaTemperatura.innerHTML = `${hora}`;
-            console.log(horaTemperatura);
+
             let icone = "icone"+i;
             icone = document.querySelector('#icone'+i);
             icone.innerHTML = `${porHora.forecast[i].symbol}`
@@ -163,7 +323,6 @@ document.getElementById("consultaCidade").onclick = function(){
             temperaturaMinimadois[8] = dadosdosdias.forecast[8].minTemp;
             temperaturaMinimadois[9] = dadosdosdias.forecast[9].minTemp; 
 
-            console.log(Math.max(...temperaturaMaximadois),Math.min(...temperaturaMinimadois));
 
             let difTemp = Math.max(...temperaturaMaximadois) - Math.min(...temperaturaMinimadois); 
 
@@ -352,9 +511,164 @@ document.getElementById("consultaCidade").onclick = function(){
         }
          `;
         document.head.appendChild(style);
-}
+
+
+        
+        
+        console.log(dadoscidadeatual)
+        hora = 19;
+        if (hora >= 5 && hora<=18){
+          const style = document.createElement('style');
+        style.innerHTML = `
+        body{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          min-height: 100vh; 
+          width: 100%;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          transition: linear 3s;
+          background-color: rgb(56, 135, 239);
+        }
+        #consultaCidade{
+          border-radius: 20px;
+          border: 0px;
+          width: 150px;
+          height: 30px;
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
+          background-color: white;
+          transition: linear 1s;
+        }
+        .prevhoraria{
+          position: sticky;
+          display: flex;
+          justify-content: left;
+        
+          width: 100%;
+          left: 0%;
+          padding-left: 22px;
+          background-color: white;
+          color: gray;
+          z-index: 1;
+          transition: linear 1s;
+        }
+        .prevdezdias{
+          position: sticky;
+          display: flex;
+          justify-content: left;
+          top:0%;
+          padding-left: 22px;
+          background-color: white;
+          color: gray;
+          z-index:1 ;
+          transition: linear 1s;
+        }
+        .linhaMedia{
+          position: relative;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: 110px;
+          background-color: white;
+          border-radius: 10px;
+          transition: linear 3s;
+        }
+        .linhaTemp{
+          position: relative;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: 100px;
+          border: 1px solid gray;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+          transition: linear 3s;
+        }
+        `
+        ;
+        document.head.appendChild(style);
+        }
+        else{
+          const style = document.createElement('style');
+          style.innerHTML = `
+          }body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh; 
+            width: 100%;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            transition: linear 3s;
+            background-color: rgb(11, 2, 45);
+          }
+          #consultaCidade{
+            border-radius: 20px;
+            border: 0px;
+            width: 150px;
+            height: 30px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
+            background-color: white;
+            transition: linear 1s;
+          }
+          .prevhoraria{
+            position: sticky;
+            display: flex;
+            justify-content: left;
+          
+            width: 100%;
+            left: 0%;
+            padding-left: 22px;
+            background-color: white;
+            color: gray;
+            z-index: 1;
+            transition: linear 1s;
+          }
+          .prevdezdias{
+            position: sticky;
+            display: flex;
+            justify-content: left;
+            top:0%;
+            padding-left: 22px;
+            background-color: white;
+            color: gray;
+            z-index:1 ;
+            transition: linear 1s;
+          }
+          .linhaMedia{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            height: 10px;
+            width: 110px;
+            background-color: white;
+            border-radius: 10px;
+            transition: linear 3s;
+          }
+          .linhaTemp{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            height: 10px;
+            width: 100px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+            transition: linear 3s;
+          }
+          `
+          ;
+          document.head.appendChild(style);
+        }
+      }
+
+    
+
+
 }
 
     
 }
 }
+        }
