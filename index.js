@@ -122,6 +122,8 @@ document.getElementById("consultaCidade").onclick = function(){
           
         }
 
+
+
 /*Posição da barra branca da temperatura atual */
 
            tempAtual = dadoscidadeatual.current.temperature;
@@ -137,8 +139,59 @@ document.getElementById("consultaCidade").onclick = function(){
            */
 
 
-          
+            const temperaturaMaximadois = [];
+            temperaturaMaximadois[0] = dadosdosdias.forecast[0].maxTemp;
+            temperaturaMaximadois[1] = dadosdosdias.forecast[1].maxTemp;
+            temperaturaMaximadois[2] = dadosdosdias.forecast[2].maxTemp;
+            temperaturaMaximadois[3] = dadosdosdias.forecast[3].maxTemp;
+            temperaturaMaximadois[4] = dadosdosdias.forecast[4].maxTemp;
+            temperaturaMaximadois[5] = dadosdosdias.forecast[5].maxTemp;
+            temperaturaMaximadois[6] = dadosdosdias.forecast[6].maxTemp;
+            temperaturaMaximadois[7] = dadosdosdias.forecast[7].maxTemp;
+            temperaturaMaximadois[8] = dadosdosdias.forecast[8].maxTemp;
+            temperaturaMaximadois[9] = dadosdosdias.forecast[9].maxTemp;
+
+            const temperaturaMinimadois = [];
            
+            temperaturaMinimadois[0] = dadosdosdias.forecast[0].minTemp;
+            temperaturaMinimadois[1] = dadosdosdias.forecast[1].minTemp;
+            temperaturaMinimadois[2] = dadosdosdias.forecast[2].minTemp;
+            temperaturaMinimadois[3] = dadosdosdias.forecast[3].minTemp;
+            temperaturaMinimadois[4] = dadosdosdias.forecast[4].minTemp;
+            temperaturaMinimadois[5] = dadosdosdias.forecast[5].minTemp;
+            temperaturaMinimadois[6] = dadosdosdias.forecast[6].minTemp;
+            temperaturaMinimadois[7] = dadosdosdias.forecast[7].minTemp;
+            temperaturaMinimadois[8] = dadosdosdias.forecast[8].minTemp;
+            temperaturaMinimadois[9] = dadosdosdias.forecast[9].minTemp;
+
+            console.log(Math.max(...temperaturaMaximadois),Math.min(...temperaturaMinimadois));
+
+            let difTemp = Math.max(...temperaturaMaximadois) - Math.min(...temperaturaMinimadois);
+
+            let difTempDia0 = temperaturaMaximadois[0] - dadosdosdias.forecast[0].minTemp;
+            let difTempDia1 = temperaturaMaximadois[1] - dadosdosdias.forecast[1].minTemp;
+            let difTempDia2 = temperaturaMaximadois[2] - dadosdosdias.forecast[2].minTemp;
+            let difTempDia3 = temperaturaMaximadois[3] - dadosdosdias.forecast[3].minTemp;
+            let difTempDia4 = temperaturaMaximadois[4] - dadosdosdias.forecast[4].minTemp;
+            let difTempDia5 = temperaturaMaximadois[5] - dadosdosdias.forecast[5].minTemp;
+            let difTempDia6 = temperaturaMaximadois[6] - dadosdosdias.forecast[6].minTemp;
+            let difTempDia7 = temperaturaMaximadois[7] - dadosdosdias.forecast[7].minTemp;
+            let difTempDia8 = temperaturaMaximadois[8] - dadosdosdias.forecast[8].minTemp;
+            let difTempDia9 = temperaturaMaximadois[9] - dadosdosdias.forecast[9].minTemp;
+            
+            console.log(difTempDia0);
+
+            let tamanhoLinhaTemp0 = (difTempDia0/difTemp)*130;
+            let tamanhoLinhaTemp1 = (difTempDia1/difTemp)*130;
+            let tamanhoLinhaTemp2 = (difTempDia2/difTemp)*130;
+            let tamanhoLinhaTemp3 = (difTempDia3/difTemp)*130;
+            let tamanhoLinhaTemp4 = (difTempDia4/difTemp)*130;
+            let tamanhoLinhaTemp5 = (difTempDia5/difTemp)*130;
+            let tamanhoLinhaTemp6 = (difTempDia6/difTemp)*130;
+            let tamanhoLinhaTemp7 = (difTempDia7/difTemp)*130;
+            let tamanhoLinhaTemp8 = (difTempDia8/difTemp)*130;
+            let tamanhoLinhaTemp9 = (difTempDia9/difTemp)*130;
+            
         const style = document.createElement('style');
         style.innerHTML = `
         .pontoTempAtual{
@@ -153,12 +206,102 @@ document.getElementById("consultaCidade").onclick = function(){
           z-index: 1;
           transition: linear 2.4s;
         }
-        #linhaTemp{
+        #linhaTemp0{
           position: absolute;
           display: flex;
           justify-content: center;
           height: 10px;
-          width: 100px;
+          width: `+tamanhoLinhaTemp0+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp1{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp1+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp2{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp2+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp3{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp3+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp4{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp4+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp5{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp5+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp6{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp6+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp7{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp7+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp8{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp8+`px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+        #linhaTemp9{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: `+tamanhoLinhaTemp9+`px;
           border: 1px solid ;
           border-radius: 10px;
           background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
