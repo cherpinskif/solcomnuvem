@@ -164,22 +164,26 @@ fetch('https://foreca-weather.p.rapidapi.com/current/103460598?alt=0&tempunit=C&
           ;
           document.head.appendChild(style);
         }
-
+   
+ 
 document.getElementById("consultaCidade").onclick = function(){
 
-	let cidade = document.getElementById("inputCidade").value;
-	    
-     
+      let cidade = document.getElementById("inputCidade").value;
+      
     fetch('https://foreca-weather.p.rapidapi.com/location/search/'+cidade+'?lang=pt&country=br', options)
 
     .then(resposta => resposta.json())
     .then(resposta => localizacao(resposta))
     .catch(erro => console.error(erro))
     
+    
+
     function localizacao(dados){
-     
+      
+      
       let id = dados.locations[0].id;
 
+      
       fetch('https://foreca-weather.p.rapidapi.com/current/'+id+'?alt=0&tempunit=C&windunit=MS&lang=pt-br', options)
       .then(dadoscidadeatual => dadoscidadeatual.json())
       .then(dadoscidadeatual => cidadeatual(dadoscidadeatual))
@@ -289,19 +293,11 @@ document.getElementById("consultaCidade").onclick = function(){
            tempAtual = dadoscidadeatual.current.temperature;
            maxTemp = dadosdosdias.forecast[0].maxTemp;
            let posicaoTempAtual = tempAtual/maxTemp*100;
-           
-
-           /* Encontrar Tamanho da linhaTemp para cada dia
-              1- Calcular tempMax 10 dias - tempMin 10 dias = DifTemp
-              2- DifTemp = 130px
-              3- Calcular tempMax dia - tempMin dia = difTempDia
-              4- difTempDia / difTemp * 130   
-           */
 
 
             const temperaturaMaximadois = [];
             temperaturaMaximadois[0] = dadosdosdias.forecast[0].maxTemp;
-             temperaturaMaximadois[1] = dadosdosdias.forecast[1].maxTemp;
+            temperaturaMaximadois[1] = dadosdosdias.forecast[1].maxTemp;
             temperaturaMaximadois[2] = dadosdosdias.forecast[2].maxTemp;
             temperaturaMaximadois[3] = dadosdosdias.forecast[3].maxTemp;
             temperaturaMaximadois[4] = dadosdosdias.forecast[4].maxTemp;
@@ -537,7 +533,6 @@ document.getElementById("consultaCidade").onclick = function(){
           width: 150px;
           height: 30px;
           box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
-          background-color: white;
           transition: linear 1s;
         }
         .prevhoraria{
@@ -672,3 +667,4 @@ document.getElementById("consultaCidade").onclick = function(){
 }
 }
         }
+        
