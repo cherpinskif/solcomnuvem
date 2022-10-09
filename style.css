@@ -305,7 +305,8 @@ h1{
   margin-right: 3px;
 }
 
-.divisoriaTotala{
+.divisoriaTotal{
+  position: relative;
   display: flex;
   justify-content: center;
   height: 10px;
@@ -315,7 +316,7 @@ h1{
   
 }
 
-.divisoriaa{
+.divisoria{
   position: absolute;
   display: flex;
   justify-content: center;
