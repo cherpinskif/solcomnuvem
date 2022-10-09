@@ -1,7 +1,3 @@
-
-
-
-
 document.getElementById("consultaCidade").onclick = function(){
 
 	let cidade = document.getElementById("inputCidade").value;
@@ -24,28 +20,22 @@ document.getElementById("consultaCidade").onclick = function(){
      
       let id = dados.locations[0].id;
 
-        fetch('https://foreca-weather.p.rapidapi.com/current/'+id+'?alt=0&tempunit=C&lang=pt', options)
-            .then(response => response.json())
-            .then(response => info(response))
-            .catch(err => console.error(err));
+      fetch('https://foreca-weather.p.rapidapi.com/current/'+id+'?alt=0&tempunit=C&windunit=MS&lang=pt-br', options)
+      .then(dadoscidadeatual => dadoscidadeatual.json())
+      .then(dadoscidadeatual => cidadeatual(dadoscidadeatual))
+      .catch(err => console.error(err));
 
-            function info(dadoscidade){
-                             
+        function cidadeatual(dadoscidadeatual){
+
         fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&tempunit=C&periods=10&lang=pt&dataset=full', options)
-        .then(response => response.json())
-        .then(response => info(response))
+        .then(dadosdosdias => dadosdosdias.json())
+        .then(dadosdosdias => info(dadosdosdias))
         .catch(err => console.error(err))
 
         function info(dadosdosdias){
          
-          console.log(dadosdosdias.forecast);
-            let maxTemperatura = [];
-            for (let t of dadosdosdias.forecast){
-              maxTemperatura.push(`${dadosdosdias.forecast[t].MaxTemp}`)
-            }
-          
             let prevagora = document.querySelector('#prevagora');
-            let situacaoatual = dadoscidade.current.symbolPhrase;
+            let situacaoatual = dadoscidadeatual.current.symbolPhrase
             let nomeCidade = document.querySelector('#nomeCidade');
             let tempAtual = document.querySelector('#tempAtual');
             let maxTemp = document.querySelector('#maxTemp');
@@ -54,7 +44,7 @@ document.getElementById("consultaCidade").onclick = function(){
             let letraMaiuscula = situacaoatual.charAt(0).toUpperCase()+situacaoatual.slice(1); 
 
             nomeCidade.innerHTML = `${dados.locations[0].name}`;
-            tempAtual.innerHTML = `${dadoscidade.current.temperature}º`;
+            tempAtual.innerHTML = `${dadoscidadeatual.current.temperature}º`;
             prevagora.innerHTML = `${letraMaiuscula}`;
             maxTemp.innerHTML = `Máx.: ${dadosdosdias.forecast[0].maxTemp}º`;
             minTemp.innerHTML = `Mín.: ${dadosdosdias.forecast[0].minTemp}º`;
@@ -85,13 +75,13 @@ document.getElementById("consultaCidade").onclick = function(){
               let imagens = ["d000","d100","d200","d300","d400","d500","d600","d210","d310","d410","d220","d320","d420","d430","d240","d340","d440","d211","d311","d411","d221","d321","d421","d431","d212","d312","d412","d222","d322","d422","d432","n000","n100","n200","n300","n400","n500","n600","n210","n310","n410","n220","n320","n420","n430","n240","n340","n440","n211","n311","n411","n221","n321","n421","n431","n212","n312","n412","n222","n322","n422","n432"]
           
               for(let simbolo = 0; simbolo <=61; simbolo++){
-                dadosdosdias.forecast[periodo].symbol === imagens[simbolo] ? icone.innerHTML = `<img style="width:40px; height:40px" src="https://developer.foreca.com/static/images/symbols/`+imagens[simbolo]+`.png">` : "-";
+                dadosdosdias.forecast[periodo].symbol === imagens[simbolo] ? icone.innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[simbolo]+`.png">` : "-";
               }
             
             }
            
 
-          }
+          
             
 
 
@@ -125,16 +115,59 @@ document.getElementById("consultaCidade").onclick = function(){
             let imagens = ["d000","d100","d200","d300","d400","d500","d600","d210","d310","d410","d220","d320","d420","d430","d240","d340","d440","d211","d311","d411","d221","d321","d421","d431","d212","d312","d412","d222","d322","d422","d432","n000","n100","n200","n300","n400","n500","n600","n210","n310","n410","n220","n320","n420","n430","n240","n340","n440","n211","n311","n411","n221","n321","n421","n431","n212","n312","n412","n222","n322","n422","n432"]
           
             for(let j = 0; j<=61; j++){
-              porHora.forecast[i].symbol == imagens[j] ? icone.innerHTML = `<img style="width:40px; height:40px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
+              porHora.forecast[i].symbol == imagens[j] ? icone.innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
             }
 
           }    
           
         }
 
+/*Posição da barra branca da temperatura atual */
 
+           tempAtual = dadoscidadeatual.current.temperature;
+           maxTemp = dadosdosdias.forecast[0].maxTemp;
+           let posicaoTempAtual = tempAtual/maxTemp*100;
+           
+
+           /* Encontrar Tamanho da linhaTemp para cada dia
+              1- Calcular tempMax 10 dias - tempMin 10 dias = DifTemp
+              2- DifTemp = 130px
+              3- Calcular tempMax dia - tempMin dia = difTempDia
+              4- difTempDia / difTemp * 130   
+           */
+
+
+          
+           
+        const style = document.createElement('style');
+        style.innerHTML = `
+        .pontoTempAtual{
+          position: absolute;
+          display: flex;
+          top: 0px;
+          left:`+posicaoTempAtual+`%;
+          height: 8.0px;
+          width: 2%;
+          border-radius: 10px;
+          background-color: white;
+          z-index: 1;
+          transition: linear 2.4s;
+        }
+        #linhaTemp{
+          position: absolute;
+          display: flex;
+          justify-content: center;
+          height: 10px;
+          width: 100px;
+          border: 1px solid ;
+          border-radius: 10px;
+          background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+        }
+         `;
+        document.head.appendChild(style);
 }
 }
 
-}
     
+}
+}
