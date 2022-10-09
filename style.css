@@ -114,7 +114,7 @@ h1{
   top:43%;
   margin: 0px;
   padding: 10px;
-  height: 33%;
+  height: 23%;
   width: 100%;
   
 }
@@ -122,6 +122,9 @@ h1{
 .containerDivCentral{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
     
   overflow-x:auto;
   overscroll-behavior-inline: contain;
@@ -129,12 +132,18 @@ h1{
   background: rgba(64, 64, 64, 0.232);
   text-align: center;
   top:0px;
-  height: 130px;
+  height: 120px;
   width: 330px;
   border: 0px solid black;
   border-radius: 10px;
   filter: blur(0px);
+  
+  
+}
 
+.containerDivCentral::-webkit-scrollbar {
+  width: 0px;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 /*-----------Elementos - divCabecalho---------*/
@@ -197,6 +206,11 @@ h1{
   filter: blur(0px);
 }
 
+.containerDivRodape::-webkit-scrollbar {
+  width: 0px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .scrollVerticalDivCentral{
   position: relative;
   display: flex;
@@ -204,11 +218,13 @@ h1{
   align-items:center;
   flex-direction: row;
   font-size: 20px;
-  height: 100px;
+  height: 150px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 19px;
   padding-right: 12px;
+  overflow-y: hidden;
+  overflow-x: hidden; 
 }
 
 
