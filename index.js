@@ -192,6 +192,13 @@ document.getElementById("consultaCidade").onclick = function(){
             let tamanhoLinhaTemp8 = (difTempDia8/difTemp)*130;
             let tamanhoLinhaTemp9 = (difTempDia9/difTemp)*130;
             
+            
+            maxTempDia0 = temperaturaMaximadois[0];
+            maxTemp = dadosdosdias.forecast[0].maxTemp;
+            let posicaoDoDia0 = maxTempDia0/maxTemp*100;
+
+            let calc0 = (posicaoDoDia0-tamanhoLinhaTemp0);
+            
         const style = document.createElement('style');
         style.innerHTML = `
         .pontoTempAtual{
@@ -206,7 +213,16 @@ document.getElementById("consultaCidade").onclick = function(){
           z-index: 1;
           transition: linear 2.4s;
         }
-        #linhaTemp0{
+        #linhaTemp0,
+        #linhaTemp1,
+        #linhaTemp2,
+        #linhaTemp3,
+        #linhaTemp4,
+        #linhaTemp5,
+        #linhaTemp6,
+        #linhaTemp7,
+        #linhaTemp8,
+        #linhaTemp9{
           position: absolute;
           display: flex;
           justify-content: center;
@@ -216,6 +232,20 @@ document.getElementById("consultaCidade").onclick = function(){
           border-radius: 10px;
           background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
         }
+
+        #linhaTemp0,
+        #linhaTemp1,
+        #linhaTemp2,
+        #linhaTemp3,
+        #linhaTemp4,
+        #linhaTemp5,
+        #linhaTemp6,
+        #linhaTemp7,
+        #linhaTemp8,
+        #linhaTemp9{
+          left:`+calc0+`px;
+        }
+
         #linhaTemp1{
           position: absolute;
           display: flex;
