@@ -1,6 +1,6 @@
 document.getElementById("consultaCidade").onclick = function (){
 
-  if(document.querySelector("#inputCidade").value > "") {
+  if(document.querySelector("#inputCidade").value !== "") {
   
   (buscaPrevisaoDoTempo())
   }
@@ -171,8 +171,7 @@ function buscaPrevisaoDoTempo() {
               background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
               transition: linear 3s;
             }
-            `
-            ;
+            `;
             document.head.appendChild(style);
           }
      
@@ -260,7 +259,7 @@ function buscaPrevisaoDoTempo() {
               
   
   
-  /*fim da previsão para os próximos dias */
+  /*fim da previsão para as próximas horas */
   
           fetch('https://foreca-weather.p.rapidapi.com/forecast/hourly/'+id+'?lang=pt&country=br&alt=0&periods=12&dataset=full&history=0', options)
           .then(response => response.json())
@@ -320,7 +319,8 @@ function buscaPrevisaoDoTempo() {
   
               
               const temperaturaMinimadois = [];
-              temperaturaMinimadois[0] = dadosdosdias.forecast[0].minTemp;             temperaturaMinimadois[1] = dadosdosdias.forecast[1].minTemp;
+              temperaturaMinimadois[0] = dadosdosdias.forecast[0].minTemp;             
+              temperaturaMinimadois[1] = dadosdosdias.forecast[1].minTemp;
               temperaturaMinimadois[2] = dadosdosdias.forecast[2].minTemp;
               temperaturaMinimadois[3] = dadosdosdias.forecast[3].minTemp;
               temperaturaMinimadois[4] = dadosdosdias.forecast[4].minTemp;
@@ -519,9 +519,6 @@ function buscaPrevisaoDoTempo() {
           
           document.head.appendChild(style);
   
-  
-          
-          
           console.log(dadoscidadeatual)
           hora = 19;
           if (hora >= 5 && hora<=18){
