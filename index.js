@@ -265,8 +265,8 @@ const options = {
                 background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
               }
               #linhaTemp0{
-                left:0,13636px;
-                right:0,13636px;
+                left:`+calcLeft0+`;
+                right:`+calcRight0+`;
                 width: `+tamanhoLinhaTemp0+`px;
               }
               #linhaTemp1{
