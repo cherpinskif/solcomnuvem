@@ -8,6 +8,8 @@ document.getElementById("consultaCidade").onclick = function (){
 }
 }
 
+
+
 function buscaPrevisaoDoTempo() {
 
 
@@ -75,6 +77,9 @@ const options = {
             
             for(i = 0; i <= 11; i++){
               let hora = new Date(responseHora.forecast[i].time).getHours()
+
+              document.querySelector('#horaTemperatura0').innerHTML = "Agora";
+
               document.querySelector('#horaTemperatura'+i).innerHTML = hora;
 
               document.querySelector('#icone'+i).innerHTML = responseHora.forecast[i].symbol; 
@@ -92,8 +97,13 @@ const options = {
           .catch(err => console.error(err));
 
             function temperaturaProximosDias(responseDia){
+              
+              
+              
               for(let i=0; i<=9;i++){
               let proximoDia = new Date(responseDia.forecast[i].date).getDate()+1;
+
+              document.querySelector('#diaDivRodape0').innerHTML = "Hoje";
               document.querySelector('#diaDivRodape'+i).innerHTML = proximoDia; 
 
               document.querySelector('#divIcone'+i).innerHTML = responseDia.forecast[i].symbol;
@@ -107,7 +117,6 @@ const options = {
               
               let temperaturaMaximaProximosDias = responseDia.forecast[i].maxTemp;
               document.querySelector('#temperaturaMaxima'+i).innerHTML = temperaturaMaximaProximosDias;
-                          
             }
             
             let posicaoTempAtual = responseAtual.current.temperature/responseDia.forecast[0].maxTemp*100;
@@ -326,4 +335,10 @@ const options = {
 
         }
       }
+    
+    
+    
     }
+
+
+   
