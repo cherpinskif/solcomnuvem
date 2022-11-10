@@ -78,7 +78,7 @@ const options = {
             for(i = 0; i <= 11; i++){
               let hora = new Date(responseHora.forecast[i].time).getHours()
 
-              document.querySelector('#horaTemperatura0').innerHTML = "Agora";
+              document.querySelector('#horaTemperatura0').innerHTML = "Agora  ";
 
               document.querySelector('#horaTemperatura'+i).innerHTML = hora;
 
