@@ -78,16 +78,13 @@ const options = {
             for(i = 0; i <= 11; i++){
               let hora = new Date(responseHora.forecast[i].time).getHours()
 
-              document.querySelector('#horaTemperatura0').innerHTML = "Agora  ";
-
-              document.querySelector('#horaTemperatura'+i).innerHTML = hora;
-
-              document.querySelector('#icone'+i).innerHTML = responseHora.forecast[i].symbol; 
+              document.getElementById('horaTemperatura0').innerHTML = "Agora";
+              document.getElementById('horaTemperatura'+i).innerHTML = hora;
+              document.getElementById('icone'+i).innerHTML = responseHora.forecast[i].symbol; 
               for(let j = 0; j<=62; j++){
                 responseHora.forecast[i].symbol == imagens[j] ? document.querySelector('#icone'+i).innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
               }
-
-              document.querySelector('#temperaturaHora'+i).innerHTML = responseHora.forecast[i].temperature;
+              document.getElementById('temperaturaHora'+i).innerHTML = responseHora.forecast[i].temperature;
             }
           
 
@@ -102,21 +99,21 @@ const options = {
               
               for(let i=0; i<=9;i++){
               let proximoDia = new Date(responseDia.forecast[i].date).getDate()+1;
-
-              document.querySelector('#diaDivRodape0').innerHTML = "Hoje";
-              document.querySelector('#diaDivRodape'+i).innerHTML = proximoDia; 
-
-              document.querySelector('#divIcone'+i).innerHTML = responseDia.forecast[i].symbol;
+              
+              document.getElementById('diaDivRodape0').innerHTML = "Hoje";
+              document.getElementById('diaDivRodape'+i).innerHTML = proximoDia;
+              document.getElementById('divIcone'+i).innerHTML = responseDia.forecast[i].symbol;
+              
               for(let j = 0; j<=62; j++){
                 responseDia.forecast[i].symbol == imagens[j] ? document.querySelector('#divIcone'+i).innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
               }
 
               let temperaturaMinimaProximosDias = responseDia.forecast[i].minTemp;
-              document.querySelector('#temperaturaMinima'+i).innerHTML = temperaturaMinimaProximosDias;
+              document.getElementById('temperaturaMinima'+i).innerHTML = temperaturaMinimaProximosDias;
 
-              
               let temperaturaMaximaProximosDias = responseDia.forecast[i].maxTemp;
-              document.querySelector('#temperaturaMaxima'+i).innerHTML = temperaturaMaximaProximosDias;
+              document.getElementById('temperaturaMaxima'+i).innerHTML = temperaturaMaximaProximosDias;
+              
             }
             
             let posicaoTempAtual = responseAtual.current.temperature/responseDia.forecast[0].maxTemp*100;
