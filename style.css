@@ -1,0 +1,401 @@
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh; 
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  transition: linear 5s;
+  background-color: rgb(19, 4, 73);
+  color: white;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/*------------------------------------------------*/
+/*------------------------------------------------*/
+
+/*------------Area - divCabecalho---------*/
+.divCabecalho{
+  position: relative;
+  display: flex;
+  top: 0%;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.infoInputDivCabecalho{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.infoLabelDivCabecalho{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100px;
+}
+
+/*-----------Elementos - divCabecalho---------*/
+
+.elementoDivCabecalho{
+  position: relative;
+  font-family:'Segoe UI';
+  text-align: center;
+}
+
+h1{
+  font-size: 18px;
+}
+
+#inputCidade{
+  border-radius: 20px;
+  border-width: 0px;
+  font-family:'Segoe UI';
+  width: 250px;
+  height: 40px;
+  margin-bottom: 7px;
+
+}
+
+#consultaCidade{
+  border-radius: 20px;
+  border: 0px;
+  width: 150px;
+  height: 30px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
+}
+
+#nomeCidade{
+  position: relative;
+  font-size: 25px;
+  margin-top: -15px;
+}
+
+#tempAtual{
+  font-size: 32px;
+}
+
+.labelDivCabecalho{
+  margin: 0px;
+}
+
+#consultaCidade:hover{
+  background: gray;
+}
+
+/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+
+/*------------Area - divCentral---------*/
+.divCentral{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:10px;
+  margin: 0px;
+  padding: 10px;
+  height: 23%;
+  width: 100%;
+}
+
+.containerScrollLateral{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.prevhoraria{
+  position: sticky;
+  top: 0px;
+  display: flex;
+  justify-content: left;
+
+  width: 100%;
+  left: 0%;
+  padding-left: 22px;
+  background-color: grey;
+  color: rgb(162, 161, 161);
+  z-index: 1;
+}
+
+.containerDivCentral{
+  position: sticky;
+  top:0px;
+  display: flex;
+  flex-direction: column;
+  
+  overflow-x:auto;
+  overscroll-behavior-inline: auto;
+
+  background: rgba(64, 64, 64, 0.232);
+  text-align: center;
+  top:0px;
+  height: 140px;
+  width: 330px;
+  border: 0px solid black;
+  border-radius: 15px; 
+}
+
+.containerDivCentral::-webkit-scrollbar {
+  width: 0px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+/*-----------Elementos - divCabecalho---------*/
+
+.scrollTemperatura,
+.scrollIcone,
+.scrollHora
+{
+  display: grid;
+  grid-auto-flow: column;
+  place-content: center;
+  
+  width: 90px;
+  padding: 3px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  height: 100%;
+}
+
+
+.scrollLateralDivCentral{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  transition: linear 5s;
+}
+
+/*-----------------------------------------------*/
+/*-----------------------------------------------*/
+
+/*------------Area - divRodape---------*/
+.divRodape{
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  top:65%;
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  transition: linear 5s;
+}
+
+.containerDivRodape{
+  display: flex;
+  flex-direction: column;
+    
+  overflow-y:auto;
+  overscroll-behavior-inline: contain;
+
+  background: rgba(64, 64, 64, 0.232);
+  text-align: center;
+
+  height: auto;
+  width: 330px;
+  border-radius: 15px;
+  transition: linear 5s;
+}
+
+.containerDivRodape::-webkit-scrollbar {
+  width: 0px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.scrollVerticalDivCentral{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction: row;
+  font-size: 20px;
+  height: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 19px;
+  padding-right: 12px;
+  transition: linear 5s;
+}
+
+.scrollDiaSemana,
+.scrollNuvem{
+  display: flex;
+  justify-content: center;
+  width: 15%;
+}
+
+.scrollTempMin,
+.scrollTempMax{
+  display: flex;
+  justify-content: center;
+  width: 25%;
+  padding-right: 5px;
+  padding-left: 5px;
+  transition: linear 5s;
+}
+
+
+.range{
+  background: firebrick; 
+}
+
+.linhatemperatura{
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  top:105%;
+  padding: 10px;
+  height: 5px;
+  width: 100%;
+  z-index: -1;
+  transition: linear 5s;
+}
+
+.linhaMedia{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 10px;
+  width: 110px;
+  background-color: grey;
+  border-radius: 10px;
+  transition: linear 5s;
+}
+
+.linhaTemp{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 10px;
+  width: 100px;
+  border: 1px solid ;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+  transition: linear 5s;
+}
+
+.pontoTempAtual{
+  position: relative;
+  display: flex;
+  top: 0%;
+  left: 49%;
+  height: 8.5px;
+  width: 2%;
+  border-radius: 10px;
+  background-color: white; 
+  transition: linear 5s;
+}
+
+.prevdezdias{
+  position: sticky;
+  display: flex;
+  justify-content: left;
+  top:0%;
+  padding-left: 22px;
+  background-color: grey;
+  color: rgb(162, 161, 161);
+  z-index:1 ;
+  transition: linear 5s;
+}
+
+.fa-calendar,
+.fa-clock{
+  top:50%;
+  margin-top: 3px;
+  margin-right: 3px;
+  transition: linear 5s;
+}
+
+.divisoriaTotal{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 10px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 10px;
+  transition: linear 5s;
+}
+
+.divisoria{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 2.1px;
+  width: 88%;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.427);
+  transition: linear 5s;
+}
+
+
+/*----Outros Itens------*/
+.outrosItens{
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  display: flex;
+  margin: 5px;
+  height: 750px;
+  width: 330px;
+}
+
+.colunaUm,
+.colunaDois{
+  position: relative;
+  flex-direction: column;
+  justify-content: space-around;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border: 1px solid white;
+}
+
+.indiceUV,
+.porDoSol,
+.vento,
+.precipitacaoChuva,
+.sensacaoTermica,
+.umidade,
+.visibilidade,
+.pressao{
+  position: relative;
+  display: flex;
+  height: 170px;
+  width: 160px;
+  border: 1px solid white;
+  border-radius: 15px;
+  margin:3px;
+}
+
+.tituloBox{
+  position: sticky;
+  top:0px;
+  border-bottom: 1px solid black;
+  height: 30px;
+  width: 100%;
+}

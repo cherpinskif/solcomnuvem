@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "Imagens"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Previsão do Tempo - API"
+	}
+}

@@ -1,0 +1,304 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1hv;
+  width: auto;
+}
+
+.divisaotopo{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0px;
+  margin: 20px;
+  padding: 20px;
+  height: 130px;
+  width: 100%;
+}
+
+.info{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  left:0;
+  top:0;
+  margin: 5px;
+}
+
+input{
+  margin: 5px;
+}
+
+.divisaocentral{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top:130px;
+  margin: 20px;
+  padding: 20px;
+  height: 400px;
+  width: 100%;
+}
+
+.container{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0px;
+  height: 300px;
+  width: 330px;
+  margin: 20px;
+  background: rgb(2, 33, 62);
+  animation: raio linear infinite;
+  border-bottom: 1px solid green;
+  filter: blur(3px);
+}
+
+.container-2{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0px;
+  margin: 20px;
+  height: 300px;
+  width: 330px;
+
+}
+
+.lua{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10%;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background: rgb(222, 222, 219);
+  border-radius: 100px;
+  box-shadow: 0 0 20px 10px rgb(255, 255, 255) ;
+  animation: lua 4s infinite linear; 
+  filter: blur(1px);
+}
+
+@keyframes lua{
+  0%{
+    background-color: rgb(255, 255, 255) ;
+    box-shadow: 0 0 15px 1px rgb(183,220,255)
+  }
+  50%{
+    background-color: rgb(255, 255, 255) ;
+    box-shadow: 0 0 25px 3px rgb(183,220,255)
+  }
+  100%{
+    background-color: rgb(255, 255, 255) ;
+    box-shadow: 0 0 15px 1px rgb(183,220,255)
+  }
+}
+
+#estrela1,
+#estrela3,
+#estrela5,
+#estrela7 {
+position: absolute;
+justify-content: center;
+align-items: center;
+width: 5px;
+height: 5px;
+border-radius: 10px;
+background: white ;
+box-shadow: 0 0 0px rgb(183,220,255);
+animation: animar 4s infinite linear;
+}
+
+#estrela2,
+#estrela4,
+#estrela6 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 3px;
+  height: 3px;
+  border-radius: 10px;
+  background: white ;
+}
+
+
+@keyframes animar{
+  0%{
+    background-color: rgb(183,220,255);
+    box-shadow: 0 0 15px 3px rgb(183,220,255)
+  }
+  50%{
+    background-color: rgb(183,220,255);
+    box-shadow: 0 0 45px 6px rgb(183,220,255)
+  }
+  100%{
+    background-color: rgb(183,220,255);
+    box-shadow: 0 0 15px 3px rgb(183,220,255)
+  }
+}
+
+#estrela1{
+  top:10%;
+  left:60%;
+}
+
+#estrela2
+{
+  top:30%;
+  left:75%;
+}
+
+#estrela3{
+  top:50%;
+  left:50%;
+}
+
+#estrela4{
+  top:70%;
+  left:14%;
+}
+
+#estrela6{
+  top:62%;
+  left:80%;
+}
+
+#estrela7{
+  top:83%;
+  left:36%;
+}
+
+#estrela5{
+  top:90%;
+  left:80%;
+}
+
+
+
+.lua{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10%;
+  left: 50px;
+  width: 100px;
+  height: 100px;
+  background: rgb(222, 222, 219);
+  border-radius: 100px;
+  box-shadow: 0 0 20px 10px rgb(255, 255, 255) ;
+  animation: lua 4s infinite linear; 
+  filter: blur(1px);
+}
+
+@keyframes lua{
+  0%{
+    background-color: rgb(255, 255, 255) ;
+    box-shadow: 0 0 15px 1px rgb(183,220,255)
+  }
+  50%{
+    background-color: rgb(255, 255, 255) ;
+    box-shadow: 0 0 25px 3px rgb(183,220,255)
+  }
+  100%{
+    background-color: rgb(255, 255, 255) ;
+    box-shadow: 0 0 15px 1px rgb(183,220,255)
+  }
+}
+
+#estrela1,
+#estrela3,
+#estrela5,
+#estrela7 {
+position: absolute;
+justify-content: center;
+align-items: center;
+width: 5px;
+height: 5px;
+border-radius: 10px;
+background: white ;
+box-shadow: 0 0 0px rgb(183,220,255);
+animation: animar 4s infinite linear;
+}
+
+#estrela2,
+#estrela4,
+#estrela6 {
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 3px;
+  height: 3px;
+  border-radius: 10px;
+  background: white ;
+}
+
+
+@keyframes animar{
+  0%{
+    background-color: rgb(183,220,255);
+    box-shadow: 0 0 15px 3px rgb(183,220,255)
+  }
+  50%{
+    background-color: rgb(183,220,255);
+    box-shadow: 0 0 45px 6px rgb(183,220,255)
+  }
+  100%{
+    background-color: rgb(183,220,255);
+    box-shadow: 0 0 15px 3px rgb(183,220,255)
+  }
+}
+
+#estrela1{
+  top:10%;
+  left:60%;
+}
+
+#estrela2
+{
+  top:30%;
+  left:75%;
+}
+
+#estrela3{
+  top:50%;
+  left:50%;
+}
+
+#estrela4{
+  top:70%;
+  left:14%;
+}
+
+#estrela6{
+  top:62%;
+  left:80%;
+}
+
+#estrela7{
+  top:83%;
+  left:36%;
+}
+
+#estrela5{
+  top:90%;
+  left:80%;
+}
+
