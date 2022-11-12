@@ -34,10 +34,9 @@
   </div>
 
   <div class="divCentral"> 
-
+        
         <div class="containerDivCentral" id="containerDivCentral">
-          <div class="prevhoraria"><i class="fa-regular fa-clock">  
-          </i>Previsão horária</div>
+            <div class="prevhoraria"><i class="fa-regular fa-clock"></i>Previsão horária</div>  
           <div class="containerScrollLateral">
           <div class="scrollLateralDivCentral">
             <div class="scrollTemperatura" id="horaTemperatura0"></div>
@@ -100,14 +99,14 @@
             <div class="scrollHora" id="temperaturaHora11"></div>
           </div>
         </div>
+        </div>
       </div>
   </div>  
         
   <div class="divRodape">
     <div class="containerDivRodape" id="containerDivRodape">
       
-      <div class="prevdezdias"><i class="fa-regular fa-calendar">
-        </i>Previsão para 10 dias</div>
+      <div class="prevdezdias"><i class="fa-regular fa-calendar"></i>Previsão para 10 dias</div>
         <div class="divisoriaTotal"><div class="divisoria"></div></div>
       <div class="scrollVerticalDivCentral">
         <div class="scrollDiaSemana" id="diaDivRodape0"></div>
@@ -241,8 +240,6 @@
         <div class="scrollTempMax" id="temperaturaMaxima9"></div>
       </div>
     </div>  
-    
-
   </div>
 
   <div class="outrosItens">
@@ -251,13 +248,29 @@
           <div class="tituloBox" id="tituloIndiceUV">Indice UV</div>
           <div class="valorIndiceUV"></div>
           <div class="classificacaoIndiceUV"></div>
-          <div class="nivelIndiceUV"></div>
+          <div class="nivelIndiceUV">
+            <div class="linhaIndiceUV" id="scrollBarraIndiceUV">
+              <div class="pontoIndiceUVAtual"></div>
+            </div>
+          </div>
+          <div class="recomendacaoIndiceUV"></div>
         </div>
         <div class="vento">
           <div class="tituloBox" id="tituloVento">Vento</div>
-          <div class="direcaoVento">
-            <div class="velocidadeVento"></div>
+          <div class="circuloVento">
+            <div class="bussolaVentoX">
+              <p>L</p>
+              <p>O</p>
+            </div>
+            <div class="bussolaVentoY">
+              <p>N</p>
+              <p>S</p>
+            </div>
+              <div class="direcaoVento">
+                <div class="setaBussola"><i class="fa-solid fa-arrow-up"></i></div>
+              </div>
           </div>
+          <div class="velocidadeVento"></div>
         </div>
         <div class="sensacaoTermica">
             <div class="tituloBox" id="tituloSensacaoTermica">Sensação Termica</div>
@@ -274,8 +287,11 @@
       <div class="colunadois">
         <div class="porDoSol">
           <div class="tituloBox" id="tituloPorDoSol">Por do Sol</div>
-          <div class="horarioPorDoSol"></div>
-          <div class="horarioNascerDoSol"></div>
+          <div class="horarioPorDoSol">A</div>
+          <div class="linhaPorDoSolA">
+          </div>
+
+          <div class="horarioNascerDoSol">A</div>
         </div>
         <div class="precipitacaoChuva">
           <div class="tituloBox" id="tituloPrecipitacao">Precipitação</div>

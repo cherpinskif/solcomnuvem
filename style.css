@@ -109,6 +109,7 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   top:10px;
   margin: 0px;
   padding: 10px;
@@ -116,11 +117,11 @@ h1{
   width: 100%;
 }
 
-.containerScrollLateral{
-  position: relative;
+.containerDivCentral{
+ height: 140px;
+  width: 330px;
   display: flex;
-  flex-direction: row;
-  
+  flex-direction: column;
 }
 
 .prevhoraria{
@@ -128,29 +129,23 @@ h1{
   top: 0px;
   display: flex;
   justify-content: left;
-
-  width: 100%;
-  left: 0%;
   padding-left: 22px;
   background-color: grey;
   color: rgb(162, 161, 161);
   z-index: 1;
 }
 
-.containerDivCentral{
-  position: sticky;
-  top:0px;
+.containerScrollLateral{
+  position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction:row;
   
-  overflow-x:auto;
-  overscroll-behavior-inline: auto;
-
+  overflow-x: hidden;
   background: rgba(64, 64, 64, 0.232);
   text-align: center;
-  top:0px;
-  height: 140px;
-  width: 330px;
+
+  height: 100%;
+  width: 100%;
   border: 0px solid black;
   border-radius: 15px; 
 }
@@ -201,6 +196,7 @@ h1{
 .prevdezdias{
   border-radius: 15px 15px 0 0;
 }
+
 .containerDivRodape{
   display: flex;
   flex-direction: column;
@@ -298,10 +294,9 @@ h1{
 
 .prevdezdias{
   position: sticky;
-  top:0px;
+  top: 0;
   display: flex;
   justify-content: left;
-  top:0%;
   padding-left: 22px;
   background-color: grey;
   color: rgb(162, 161, 161);
@@ -347,15 +342,15 @@ h1{
   justify-content: center;
   display: flex;
   margin: 5px;
-  height: 1750px;
-  width: 30000px;
+  height: 750px;
+  width: 100%;
 }
 
 .colunaUm,
 .colunaDois{
   position: relative;
   flex-direction: column;
-  justify-content: space-around;
+  
   display: flex;
   height: 100%;
   width: 90%;
@@ -372,17 +367,99 @@ h1{
 .pressao{
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 170px;
   width: 160px;
+  margin: 35px 10px 0px 5px ;
   border: 1px solid white;
   border-radius: 15px;
-  margin:3px;
 }
 
 .tituloBox{
   position: sticky;
   top:0px;
-  border-bottom: 1px solid black;
   height: 30px;
   width: 100%;
+  display: flex;
+  justify-content: left;
+  padding-left: 22px;
+  background-color: grey;
+  color: rgb(162, 161, 161);
+  border-radius: 15px 15px 0 0;
+  z-index: 1;
+}
+
+.valorIndiceUV,
+.classificacaoIndiceUV,
+.nivelIndiceUV,
+.linhaIndiceUV,
+.recomendacaoIndiceUV{
+  margin: 5px;
+}
+
+.linhaIndiceUV{
+  position: relative;
+  display: flex;
+  height: 10px;
+  width: 100px;
+  border: 1px solid ;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+  transition: linear 5s;
+}
+
+.pontoIndiceUVAtual{
+  position: relative;
+  display: flex;
+  top: 0%;
+  left: 49%;
+  height: 8.5px;
+  width: 8.5px;
+  border-radius: 8.5px;
+  border: 1px solid black;
+  background-color: white; 
+  transition: linear 5s;
+}
+
+.circuloVento{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  border:5px dashed rgba(0, 0, 0, 0.521);
+}
+
+.bussolaVentoX{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+
+}
+
+.bussolaVentoY{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+}
+
+.velocidadeVento{
+  position: relative;
+  margin: 4px;
+}
+
+.setaBussola{
+  transform:rotateZ(0deg) scale(1.8);
+  transition: all 1s;
 }

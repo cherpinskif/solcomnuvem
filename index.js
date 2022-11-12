@@ -21,9 +21,9 @@ const options = {
   }
 };
 
-  let cidade = document.querySelector('#inputCidade').value;
+  var cidade = document.querySelector('#inputCidade').value;
 
-    fetch('https://foreca-weather.p.rapidapi.com/location/search/'+cidade+'?lang=en&country=br', options)
+    fetch('https://foreca-weather.p.rapidapi.com/location/search/'+cidade+'?lang=en&lang=pt-br', options)
       .then(dadoscidadeatual => dadoscidadeatual.json())
       .then(dadoscidadeatual => cidadeatual(dadoscidadeatual))
       .catch(err => console.error(err));
@@ -31,8 +31,8 @@ const options = {
       function cidadeatual(dadoscidadeatual){      
 
         console.log(dadoscidadeatual)
-        let id = dadoscidadeatual.locations[0].id;
-        let nomeCidade = dadoscidadeatual.locations[0].name;
+        var id = dadoscidadeatual.locations[0].id;
+        var nomeCidade = dadoscidadeatual.locations[0].name;
         document.querySelector('#nomeCidade').innerHTML = nomeCidade;
        
           fetch('https://foreca-weather.p.rapidapi.com/current/'+id+'?alt=0&lang=pt-br', options)
@@ -42,6 +42,7 @@ const options = {
 
             function situacaoAtual(responseAtual){ 
 
+              console.log(responseAtual);
               let tempAtual = responseAtual.current.temperature;
               document.querySelector('#tempAtual').innerHTML = tempAtual+"ºC";
 
@@ -192,7 +193,6 @@ const options = {
             minTemp = Math.min(...arrayTemperaturaMinima);            
             maxTemp = Math.max(...arrayTemperaturaMaxima);
 
-           
             let posicaoLeftDoDia0 = ((maxTemp - maxTempDia0)*difTemp/110); 
             let posicaoLeftDoDia1 = ((maxTemp - maxTempDia1)*difTemp/110); 
             let posicaoLeftDoDia2 = ((maxTemp - maxTempDia2)*difTemp/110); 
@@ -226,7 +226,6 @@ const options = {
             let posicaoRightDoDia8 = ((minTempDia8 - minTemp)*difTemp/110); 
             let posicaoRightDoDia9 = ((minTempDia9 - minTemp)*difTemp/110); 
 
-           
             let calcRight0 = (posicaoRightDoDia0);
             let calcRight1 = (posicaoRightDoDia1);
             let calcRight2 = (posicaoRightDoDia2);
@@ -237,6 +236,27 @@ const options = {
             let calcRight7 = (posicaoRightDoDia7);
             let calcRight8 = (posicaoRightDoDia8);
             let calcRight9 = (posicaoRightDoDia9);
+
+            var indiceUV = responseAtual.current.uvIndex; 
+            document.querySelector('.valorIndiceUV').innerHTML = indiceUV;
+
+            indiceUV >= 0 && indiceUV <=2 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Baixo' :
+            indiceUV >= 3 && indiceUV <=5 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Moderado' :
+            indiceUV >= 6 && indiceUV <=7 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Alto' :
+            indiceUV >= 8 && indiceUV <=10 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Muito Alto' :
+            indiceUV >= 11 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Extremo' : document.querySelector('.classificacaoIndiceUV').innerHTML = ""
+            
+            indiceUV >= 0 && indiceUV <=2 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Use de proteção solar' :
+            indiceUV >= 3 && indiceUV <=5 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Utilize óculos de Sol e camisa UV' :
+            indiceUV >= 6 && indiceUV <=7 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Utilize óculos de Sol e camisa UV de manga longa.' :
+            indiceUV >= 8 && indiceUV <=10 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Não é recomendada a exposição ao Sol por mais de 15 minutos' :
+            indiceUV >= 11 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Evite o Sol principalmente perto do meio dia' : document.querySelector('.recomendacaoIndiceUV').innerHTML = ""
+
+            var posicaoPontoIndiceUV =  indiceUV*5.65625;
+
+            var deg = responseAtual.current.windDir
+            var velocidadeVento = responseAtual.current.windSpeed
+            document.querySelector('.velocidadeVento').innerHTML = `${velocidadeVento*3.6+`km/h`}`;
 
             const style = document.createElement('style');
             style.innerHTML = `
@@ -319,21 +339,46 @@ const options = {
                 left:`+calcLeft9+`px;
                 right:`+calcRight9+`px;
                 width: `+tamanhoLinhaTemp9+`px;
-              }`;
+              }
+              .setaBussola{
+                transform:rotateZ(`+deg+`deg) scale(1.8);
+              }
+              .linhaIndiceUV{
+                position: relative;
+                display: flex;
+                height: 10px;
+                width: 100px;
+                border: 1px solid ;
+                border-radius: 10px;
+                background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+                transition: linear 5s;
+              }
+              .pontoIndiceUVAtual{
+                position: relative;
+                display: flex;
+                top: 0%;
+                left:`+posicaoPontoIndiceUV+`px;
+                height: 8.5px;
+                width: 8.5px;
+                border-radius: 8.5px;
+                background-color: white; 
+                transition: linear 5s;
+              }`
+              ;
             
             document.head.appendChild(style); 
             
             
             }
 
-
+   
           }   
         
 
         }
       }
     
-    
+      
     
     }
 
