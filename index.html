@@ -100,12 +100,10 @@
           </div>
         </div>
         </div>
-      </div>
-  </div>  
+  </div>
         
   <div class="divRodape">
     <div class="containerDivRodape" id="containerDivRodape">
-      
       <div class="prevdezdias"><i class="fa-regular fa-calendar"></i>Previsão para 10 dias</div>
         <div class="divisoriaTotal"><div class="divisoria"></div></div>
       <div class="scrollVerticalDivCentral">
@@ -115,9 +113,8 @@
         <div class="scrollBarraTemperatura" id="scrollBarraTemperatura0">
           <div class="linhaMedia" id="linhaMedia0">
             <div class="linhaTemp" id="linhaTemp0">
-          <div class="pontoTempAtual">
-          </div>
-          </div>
+              <div class="pontoTempAtual"></div>
+            </div>
           </div>
         </div>
         <div class="scrollTempMax" id="temperaturaMaxima0"></div>
@@ -233,8 +230,7 @@
         <div class="scrollTempMin" id="temperaturaMinima9"></div>
         <div class="scrollBarraTemperatura" id="scrollBarraTemperatura9">
           <div class="linhaMedia" id="linhaMedia9">
-          <div class="linhaTemp" id="linhaTemp9">
-          </div>
+          <div class="linhaTemp" id="linhaTemp9"></div>
           </div>
         </div>
         <div class="scrollTempMax" id="temperaturaMaxima9"></div>
@@ -244,71 +240,94 @@
 
   <div class="outrosItens">
       <div class="colunaum">
-        <div class="indiceUV">
-          <div class="tituloBox" id="tituloIndiceUV">Indice UV</div>
-          <div class="valorIndiceUV"></div>
-          <div class="classificacaoIndiceUV"></div>
-          <div class="nivelIndiceUV">
-            <div class="linhaIndiceUV" id="scrollBarraIndiceUV">
-              <div class="pontoIndiceUVAtual"></div>
+          <div class="indiceUV">
+            <div class="tituloBox" id="tituloIndiceUV">Indice UV</div>
+            <div class="conteudoBox" id="conteudoIndiceUV">  
+              <div class="valorIndiceUV"></div>
+                <div class="classificacaoIndiceUV"></div>
+                <div class="nivelIndiceUV">
+                  <div class="linhaMediaIndiceUV">
+                    <div class="linhaIndiceUV" id="scrollBarraIndiceUV">
+                      <div class="pontoIndiceUVAtual"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="recomendacaoIndiceUV"></div>
             </div>
           </div>
-          <div class="recomendacaoIndiceUV"></div>
-        </div>
-        <div class="vento">
-          <div class="tituloBox" id="tituloVento">Vento</div>
-          <div class="circuloVento">
-            <div class="bussolaVentoX">
-              <p>L</p>
-              <p>O</p>
-            </div>
-            <div class="bussolaVentoY">
-              <p>N</p>
-              <p>S</p>
-            </div>
-              <div class="direcaoVento">
-                <div class="setaBussola"><i class="fa-solid fa-arrow-up"></i></div>
-              </div>
-          </div>
-          <div class="velocidadeVento"></div>
-        </div>
-        <div class="sensacaoTermica">
-            <div class="tituloBox" id="tituloSensacaoTermica">Sensação Termica</div>
-            <div class="temperaturaSensacaoTermica"></div>
-            <div class="comparacaoSensacaoTermica"></div>
-        </div>
-        <div class="visibilidade">
-          <div class="tituloBox" id="tituloVisibilidade">Visibilidade</div>
-          <div class="kmVisivel"></div>
-          <div class="motivoVisibilidade"></div>
-        </div>
-      </div>
 
+          <div class="vento">
+            <div class="tituloBox" id="tituloVento">Vento</div>
+            <div class="conteudoBox" id="conteudoVento">
+              <div class="circuloVento">
+                <div class="bussolaVentoX">
+                  <p id="direcaoBussola">L</p>
+                  <p id="direcaoBussola">O</p>
+                </div>
+                <div class="bussolaVentoY">
+                  <p id="direcaoBussola">N</p>
+                  <p id="direcaoBussola">S</p>
+                </div>
+                <div class="direcaoVento">
+                  <div class="setaBussola"><i class="fa-solid fa-arrow-up"></i></div>
+                </div>
+              </div>
+              <div class="velocidadeVento"></div>
+            </div>
+          </div>
+
+          <div class="sensacaoTermica">
+            <div class="tituloBox" id="tituloSensacaoTermica">Sensação Termica</div>
+            <div class="conteudoBox" id="conteudoSensacaoTermica">
+              <div class="temperaturaSensacaoTermica"></div>
+              <div class="comparacaoSensacaoTermica"></div>
+            </div>
+          </div> 
+
+          <div class="visibilidade">
+            <div class="tituloBox" id="tituloVisibilidade">Visibilidade</div>
+            <div class="conteudoBox" id="conteudoVisibilidade">
+              <div class="kmVisivel"></div>
+              <div class="motivoVisibilidade"></div>
+            </div>
+          </div>
+      </div>
       <div class="colunadois">
         <div class="porDoSol">
           <div class="tituloBox" id="tituloPorDoSol">Por do Sol</div>
-          <div class="horarioPorDoSol">A</div>
-          <div class="linhaPorDoSolA">
+          <div class="conteudoBox" id="conteudoPorDoSol">
+            <div class="horarioPorDoSol"></div>
+            <div class="horarioNascerDoSol"></div>
+            <div class="circuloSol">
+              <div class="pontoAtualdoSol"></div>
+              <div class="linhaAtualdoSol"></div>
+            </div>
           </div>
-
-          <div class="horarioNascerDoSol">A</div>
         </div>
+
         <div class="precipitacaoChuva">
           <div class="tituloBox" id="tituloPrecipitacao">Precipitação</div>
+          <div class="conteudoBox" id="conteudoPrecipitacao"></div>
         </div>
+        
         <div class="umidade">
           <div class="tituloBox" id="tituloUmidade">Umidade</div>
-          <div class="taxaUmidade"></div>
-          <div class="pontoDeOrvalho"></div>
+          <div class="conteudoBox" id="conteudoUmidade">
+            <div class="taxaUmidade"></div>
+            <div class="pontoDeOrvalho"></div>
+          </div>
         </div>
+        
         <div class="pressao">
           <div class="tituloBox" id="tituloPressao">Pressao</div>
-          <div class="nivelPressao">
-            <div class="valorPressao"></div>
+          <div class="conteudoBox" id="conteudoPressao">
+            <div class="nivelPressao">
+              <div class="valorPressao"></div>
+            </div>
+          </div>
         </div>
+
       </div>
-    </div>
-    </div>
   </div>
 
 
