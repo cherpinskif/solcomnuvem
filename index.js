@@ -83,6 +83,11 @@ const options = {
               document.getElementById('horaTemperatura0').innerHTML = "Agora";
               document.getElementById('horaTemperatura'+i).innerHTML = hora;
               document.getElementById('icone'+i).innerHTML = responseHora.forecast[i].symbol; 
+
+              const favicon = document.createElement('favicon');
+              favicon.innerHTML = `<link rel="shortcut icon" id="favicon" href="./Imagens/`+responseHora.forecast[0].symbol+`.png" type="image/x-icon">`;
+              document.head.appendChild(favicon);
+
               for(let j = 0; j<=62; j++){
                 responseHora.forecast[i].symbol == imagens[j] ? document.querySelector('#icone'+i).innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
               }
@@ -98,12 +103,15 @@ const options = {
             function temperaturaProximosDias(responseDia){
               
               let horaatual = new Date().getHours();
-             
-              const styleBackgroundNoite = "rgb(19, 4, 73)";
-              const styleBackgroundDia = "rgb(135, 206, 235)";
-
-              var DiaNoite = horaatual > responseDia.forecast[0].sunrise.slice(0,2) && horaatual < responseDia.forecast[0].sunset.slice(0,2) ? styleBackgroundDia : styleBackgroundNoite;  
               
+             
+              var styleBackgroundNoite = "rgb(19, 4, 73)";
+              var styleBackgroundDia = "rgb(135, 206, 235)";
+
+              var DiaNoite = horaatual > +responseDia.forecast[0].sunrise.slice(0,2) && horaatual < +responseDia.forecast[0].sunset.slice(0,2) ? styleBackgroundDia : styleBackgroundNoite;  
+              
+              console.log(DiaNoite);
+
               var horaEmMinuto = (new Date().getHours()*60);
               var minutoEmSegundo = (horaEmMinuto + (new Date().getMinutes()))*60;
               var HoraAtualEmSegundos = minutoEmSegundo + (new Date().getSeconds());
@@ -127,7 +135,8 @@ const options = {
               document.getElementById('diaDivRodape0').innerHTML = "Hoje";
               document.getElementById('diaDivRodape'+i).innerHTML = proximoDia;
               document.getElementById('divIcone'+i).innerHTML = responseDia.forecast[i].symbol;
-              
+              console.log(responseDia.forecast[0].symbol);
+
               for(let j = 0; j<=62; j++){
                 responseDia.forecast[i].symbol == imagens[j] ? document.querySelector('#divIcone'+i).innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
               }
@@ -271,7 +280,7 @@ const options = {
             indiceUV >= 8 && indiceUV <=10 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Muito Alto' :
             indiceUV >= 11 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Extremo' : document.querySelector('.classificacaoIndiceUV').innerHTML = ""
             
-            indiceUV >= 0 && indiceUV <=2 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Use de proteção solar' :
+            indiceUV >= 0 && indiceUV <=2 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Use proteção solar' :
             indiceUV >= 3 && indiceUV <=5 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Utilize óculos de Sol e camisa UV' :
             indiceUV >= 6 && indiceUV <=7 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Utilize óculos de Sol e camisa UV de manga longa.' :
             indiceUV >= 8 && indiceUV <=10 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Não é recomendada a exposição ao Sol por mais de 15 minutos' :
@@ -279,17 +288,17 @@ const options = {
 
             var posicaoPontoIndiceUV =  indiceUV*5.65625;
 
-            var deg = responseAtual.current.windDir
+            var direcaoVento = responseAtual.current.windDir
             var velocidadeVento = responseAtual.current.windSpeed
             document.querySelector('.velocidadeVento').innerHTML = `${velocidadeVento*3.6+`km/h`}`;
 
             const style = document.createElement('style');
             style.innerHTML = `
             body{
-              background-color: `+DiaNoite+`;
+              background-color:`+DiaNoite+`;
             }
             .divCabecalho{
-              background-color: `+DiaNoite+`;
+              background-color:`+DiaNoite+`;
             }
             .pontoTempAtual{
               position: absolute;
@@ -372,7 +381,7 @@ const options = {
                 width: `+tamanhoLinhaTemp9+`px;
               }
               .setaBussola{
-                transform:rotateZ(`+deg+`deg) scale(1.8);
+                transform:rotateZ(`+direcaoVento+`deg) scale(1.8);
               }
               .linhaIndiceUV{
                 position: relative;
