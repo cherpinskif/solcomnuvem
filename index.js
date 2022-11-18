@@ -21,7 +21,7 @@ const options = {
   }
 };
 
-  let cidade = document.querySelector('#inputCidade').value;
+  var cidade = document.querySelector('#inputCidade').value;
 
     fetch('https://foreca-weather.p.rapidapi.com/location/search/'+cidade+'?lang=en&country=br', options)
       .then(dadoscidadeatual => dadoscidadeatual.json())
@@ -31,8 +31,8 @@ const options = {
       function cidadeatual(dadoscidadeatual){      
 
         console.log(dadoscidadeatual)
-        let id = dadoscidadeatual.locations[0].id;
-        let nomeCidade = dadoscidadeatual.locations[0].name;
+        var id = dadoscidadeatual.locations[0].id;
+        var nomeCidade = dadoscidadeatual.locations[0].name;
         document.querySelector('#nomeCidade').innerHTML = nomeCidade;
        
           fetch('https://foreca-weather.p.rapidapi.com/current/'+id+'?alt=0&lang=pt-br', options)
@@ -333,7 +333,7 @@ const options = {
         }
       }
     
-    
+      console.log(nomeCidade);  
     
     }
 

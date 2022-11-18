@@ -109,6 +109,7 @@ h1{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   top:10px;
   margin: 0px;
   padding: 10px;
@@ -117,48 +118,39 @@ h1{
 }
 
 .containerScrollLateral{
-  position: relative;
+  position: sticky;
   display: flex;
   flex-direction: row;
-  
 }
 
 .prevhoraria{
   position: sticky;
-  top: 0px;
+  top:0px;
+  left: 0px;
   display: flex;
   justify-content: left;
-
-  width: 100%;
-  left: 0%;
   padding-left: 22px;
   background-color: grey;
   color: rgb(162, 161, 161);
-  z-index: 1;
+  
 }
 
 .containerDivCentral{
-  position: sticky;
-  top:0px;
+  position: relative;
   display: flex;
   flex-direction: column;
   
-  overflow-x:auto;
-  overscroll-behavior-inline: auto;
+  overflow-x:scroll;
 
   background: rgba(64, 64, 64, 0.232);
   text-align: center;
-  top:0px;
+
   height: 140px;
   width: 330px;
   border: 0px solid black;
   border-radius: 15px; 
 }
 
-.containerDivCentral::-webkit-scrollbar {
-  width: 0px;
-  background-color: rgba(0, 0, 0, 0);
-}
 
 /*-----------Elementos - divCabecalho---------*/
 
@@ -197,31 +189,23 @@ h1{
   align-items: center;
   flex-direction: column;
   top:65%;
-  padding: 10px;
-  height: 100%;
-  width: 100%;
+  margin: 20px 0 20px 0;
+  width: 330px;
   transition: linear 5s;
+}
+
+.prevdezdias{
+  border-radius: 15px 15px 0 0;
 }
 
 .containerDivRodape{
   display: flex;
   flex-direction: column;
-    
-  overflow-y:auto;
-  overscroll-behavior-inline: contain;
-
   background: rgba(64, 64, 64, 0.232);
   text-align: center;
-
-  height: auto;
-  width: 330px;
+  width: 100%;
   border-radius: 15px;
   transition: linear 5s;
-}
-
-.containerDivRodape::-webkit-scrollbar {
-  width: 0px;
-  background-color: rgba(0, 0, 0, 0);
 }
 
 .scrollVerticalDivCentral{
@@ -255,7 +239,6 @@ h1{
   padding-left: 5px;
   transition: linear 5s;
 }
-
 
 .range{
   background: firebrick; 
@@ -312,9 +295,9 @@ h1{
 
 .prevdezdias{
   position: sticky;
+  top:0px;
   display: flex;
   justify-content: left;
-  top:0%;
   padding-left: 22px;
   background-color: grey;
   color: rgb(162, 161, 161);
@@ -360,8 +343,8 @@ h1{
   justify-content: center;
   display: flex;
   margin: 5px;
-  height: 750px;
-  width: 330px;
+  height: 1750px;
+  width: 100%;
 }
 
 .colunaUm,
@@ -371,7 +354,7 @@ h1{
   justify-content: space-around;
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 90%;
   border: 1px solid white;
 }
 
@@ -385,6 +368,9 @@ h1{
 .pressao{
   position: relative;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 170px;
   width: 160px;
   border: 1px solid white;
@@ -395,7 +381,54 @@ h1{
 .tituloBox{
   position: sticky;
   top:0px;
-  border-bottom: 1px solid black;
   height: 30px;
   width: 100%;
+  display: flex;
+  justify-content: left;
+  padding-left: 22px;
+  background-color: grey;
+  color: rgb(162, 161, 161);
+  border-radius: 15px 15px 0 0;
+}
+
+.linhaPorDoSol{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 1500px;
+  border: 1px solid ;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+  
+}
+
+.linhaPorDoSolA{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+path{
+  width: 1500px;
+  height: 100px;
+  background: white;
+  color: white;
+  stroke-width: 7px;
+  stroke:white;
+  fill: transparent;
+
+}
+
+.pathBlack{
+  position: fixed;
+  width: 100%;
+  stroke-width: 7px;
+  stroke:black;
+  fill: transparent;
+  top:500px; 
+  z-index: 1;
 }
