@@ -1,11 +1,8 @@
 document.getElementById("consultaCidade").onclick = function (){
 
-  if(document.querySelector("#inputCidade").value !== "") {
-  
-  (buscaPrevisaoDoTempo())
-  }
-  else{ alert("Informe a cidade")
-}
+  document.querySelector("#inputCidade").value !== "" ? buscaPrevisaoDoTempo() : alert("Informe a cidade");
+
+
 }
 
 
@@ -23,7 +20,7 @@ const options = {
 
   var cidade = document.querySelector('#inputCidade').value;
 
-    fetch('https://foreca-weather.p.rapidapi.com/location/search/'+cidade+'?lang=en&country=br', options)
+    fetch('https://foreca-weather.p.rapidapi.com/location/search/'+cidade+'?lang=en&lang=pt-br', options)
       .then(dadoscidadeatual => dadoscidadeatual.json())
       .then(dadoscidadeatual => cidadeatual(dadoscidadeatual))
       .catch(err => console.error(err));
@@ -42,6 +39,7 @@ const options = {
 
             function situacaoAtual(responseAtual){ 
 
+              console.log(responseAtual);
               let tempAtual = responseAtual.current.temperature;
               document.querySelector('#tempAtual').innerHTML = tempAtual+"ºC";
 
@@ -49,7 +47,7 @@ const options = {
               let letraMaiuscula = sitAtual.charAt(0).toUpperCase()+sitAtual.slice(1);
               document.querySelector('#sitAtual').innerHTML = letraMaiuscula;
 
-                fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&periods=10 &dataset=full', options)
+                fetch('https://foreca-weather.p.rapidapi.com/forecast/daily/'+id+'?alt=0&periods=10&dataset=full', options)
                 .then(responseDia => responseDia.json())
                 .then(responseDia => situacaoDia(responseDia))
                 .catch(err => console.error(err));
@@ -62,10 +60,10 @@ const options = {
                     document.querySelector('#maxTemp').innerHTML = 'Max.: '+temperaturaMaxima+'ºC'
 
       }      
-      
-    
+          
 
-    
+
+
          let imagens = ["d000","d100","d110","d200","d300","d400","d500","d600","d210","d310","d410","d220","d320","d420","d430","d240","d340","d440","d211","d311","d411","d221","d321","d421","d431","d212","d312","d412","d222","d322","d422","d432","n000","n100","n110","n200","n300","n400","n500","n600","n210","n310","n410","n220","n320","n420","n430","n240","n340","n440","n211","n311","n411","n221","n321","n421","n431","n212","n312","n412","n222","n322","n422","n432"]
 
           fetch('https://foreca-weather.p.rapidapi.com/forecast/hourly/'+id+'?alt=0&periods=12&dataset=full&history=0&lang=pt-br', options)
@@ -75,12 +73,21 @@ const options = {
 
           function situacaoHora(responseHora){
             
+
+              
             for(i = 0; i <= 11; i++){
               let hora = new Date(responseHora.forecast[i].time).getHours()
+
+              
 
               document.getElementById('horaTemperatura0').innerHTML = "Agora";
               document.getElementById('horaTemperatura'+i).innerHTML = hora;
               document.getElementById('icone'+i).innerHTML = responseHora.forecast[i].symbol; 
+
+              const favicon = document.createElement('favicon');
+              favicon.innerHTML = `<link rel="shortcut icon" id="favicon" href="./Imagens/`+responseHora.forecast[0].symbol+`.png" type="image/x-icon">`;
+              document.head.appendChild(favicon);
+
               for(let j = 0; j<=62; j++){
                 responseHora.forecast[i].symbol == imagens[j] ? document.querySelector('#icone'+i).innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
               }
@@ -95,15 +102,41 @@ const options = {
 
             function temperaturaProximosDias(responseDia){
               
+              let horaatual = new Date().getHours();
               
+             
+              var styleBackgroundNoite = "rgb(19, 4, 73)";
+              var styleBackgroundDia = "rgb(135, 206, 235)";
+
+              var DiaNoite = horaatual > +responseDia.forecast[0].sunrise.slice(0,2) && horaatual < +responseDia.forecast[0].sunset.slice(0,2) ? styleBackgroundDia : styleBackgroundNoite;  
               
+              console.log(DiaNoite);
+
+              var horaEmMinuto = (new Date().getHours()*60);
+              var minutoEmSegundo = (horaEmMinuto + (new Date().getMinutes()))*60;
+              var HoraAtualEmSegundos = minutoEmSegundo + (new Date().getSeconds());
+                            
+              var horarioPorDoSol = (((+responseDia.forecast[0].sunset.slice(0,2)*60)+(+responseDia.forecast[0].sunset.slice(3,5)))*60+(+responseDia.forecast[0].sunset.slice(6,8)));
+              
+              var horarioNascerdoSol = ((+responseDia.forecast[0].sunrise.slice(0,2)*60)+(+responseDia.forecast[0].sunrise.slice(3,5)))*60+(+responseDia.forecast[0].sunrise.slice(6,8));
+              
+              var horarioSol = horarioPorDoSol - horarioNascerdoSol;
+              var umgrau = horarioSol / 180;
+              var descobrirGrau = ((horarioNascerdoSol - HoraAtualEmSegundos)/umgrau);
+              
+              let a = Math.sin(descobrirGrau*0.017453)*48;
+              let b = -Math.cos(descobrirGrau*0.017453)*48;
+              
+              document.querySelector('.horarioNascerDoSol').innerHTML = `Nascer do Sol: ${responseDia.forecast[0].sunrise}`;
+
               for(let i=0; i<=9;i++){
               let proximoDia = new Date(responseDia.forecast[i].date).getDate()+1;
               
               document.getElementById('diaDivRodape0').innerHTML = "Hoje";
               document.getElementById('diaDivRodape'+i).innerHTML = proximoDia;
               document.getElementById('divIcone'+i).innerHTML = responseDia.forecast[i].symbol;
-              
+              console.log(responseDia.forecast[0].symbol);
+
               for(let j = 0; j<=62; j++){
                 responseDia.forecast[i].symbol == imagens[j] ? document.querySelector('#divIcone'+i).innerHTML = `<img style="width:30px; height:30px" src="https://developer.foreca.com/static/images/symbols/`+imagens[j]+`.png">` : "-";
               }
@@ -192,7 +225,7 @@ const options = {
             minTemp = Math.min(...arrayTemperaturaMinima);            
             maxTemp = Math.max(...arrayTemperaturaMaxima);
 
-           
+
             let posicaoLeftDoDia0 = ((maxTemp - maxTempDia0)*difTemp/110); 
             let posicaoLeftDoDia1 = ((maxTemp - maxTempDia1)*difTemp/110); 
             let posicaoLeftDoDia2 = ((maxTemp - maxTempDia2)*difTemp/110); 
@@ -226,7 +259,7 @@ const options = {
             let posicaoRightDoDia8 = ((minTempDia8 - minTemp)*difTemp/110); 
             let posicaoRightDoDia9 = ((minTempDia9 - minTemp)*difTemp/110); 
 
-           
+
             let calcRight0 = (posicaoRightDoDia0);
             let calcRight1 = (posicaoRightDoDia1);
             let calcRight2 = (posicaoRightDoDia2);
@@ -238,8 +271,35 @@ const options = {
             let calcRight8 = (posicaoRightDoDia8);
             let calcRight9 = (posicaoRightDoDia9);
 
+            var indiceUV = responseAtual.current.uvIndex; 
+            document.querySelector('.valorIndiceUV').innerHTML = indiceUV;
+
+            indiceUV >= 0 && indiceUV <=2 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Baixo' :
+            indiceUV >= 3 && indiceUV <=5 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Moderado' :
+            indiceUV >= 6 && indiceUV <=7 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Alto' :
+            indiceUV >= 8 && indiceUV <=10 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Muito Alto' :
+            indiceUV >= 11 ? document.querySelector('.classificacaoIndiceUV').innerHTML = 'Extremo' : document.querySelector('.classificacaoIndiceUV').innerHTML = ""
+            
+            indiceUV >= 0 && indiceUV <=2 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Use proteção solar' :
+            indiceUV >= 3 && indiceUV <=5 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Utilize óculos de Sol e camisa UV' :
+            indiceUV >= 6 && indiceUV <=7 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Utilize óculos de Sol e camisa UV de manga longa.' :
+            indiceUV >= 8 && indiceUV <=10 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Não é recomendada a exposição ao Sol por mais de 15 minutos' :
+            indiceUV >= 11 ? document.querySelector('.recomendacaoIndiceUV').innerHTML = 'Evite o Sol principalmente perto do meio dia' : document.querySelector('.recomendacaoIndiceUV').innerHTML = ""
+
+            var posicaoPontoIndiceUV =  indiceUV*5.65625;
+
+            var direcaoVento = responseAtual.current.windDir
+            var velocidadeVento = responseAtual.current.windSpeed
+            document.querySelector('.velocidadeVento').innerHTML = `${velocidadeVento*3.6+`km/h`}`;
+
             const style = document.createElement('style');
             style.innerHTML = `
+            body{
+              background-color:`+DiaNoite+`;
+            }
+            .divCabecalho{
+              background-color:`+DiaNoite+`;
+            }
             .pontoTempAtual{
               position: absolute;
               display: flex;
@@ -319,21 +379,564 @@ const options = {
                 left:`+calcLeft9+`px;
                 right:`+calcRight9+`px;
                 width: `+tamanhoLinhaTemp9+`px;
-              }`;
+              }
+              .setaBussola{
+                transform:rotateZ(`+direcaoVento+`deg) scale(1.8);
+              }
+              .linhaIndiceUV{
+                position: relative;
+                display: flex;
+                height: 10px;
+                width: 100px;
+                border: 1px solid ;
+                border-radius: 10px;
+                background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+                transition: linear 5s;
+              }
+              .pontoIndiceUVAtual{
+                position: relative;
+                display: flex;
+                top: 0%;
+                left:`+posicaoPontoIndiceUV+`px;
+                height: 8.5px;
+                width: 8.5px;
+                border-radius: 8.5px;
+                background-color: white; 
+                transition: linear 5s;
+              }
+              body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                min-height: 100vh; 
+                width: 100%;
+                font-family: 'Roboto', sans-serif;
+                transition: linear 5s;
+                background-color: rgb(135, 206, 235);
+                color: white;
+              }
+              
+              *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              }
+              
+              
+              /*------------------------------------------------*/
+              /*------------------------------------------------*/
+              
+              /*------------Area - divCabecalho---------*/
+              .divCabecalho{
+                position: sticky;
+                top:0;
+                display: flex;
+                width: 100%;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                background-color: rgb(135, 206, 235);
+                z-index: 10;
+              }
+              
+              .infoInputDivCabecalho{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                width: 100%;
+                margin-bottom: 15px;
+              }
+              
+              .infoLabelDivCabecalho{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 100%;
+                height: 100px;
+              }
+              
+              /*-----------Elementos - divCabecalho---------*/
+              
+              .elementoDivCabecalho{
+                position: relative;
+                font-family:'Segoe UI';
+                text-align: center;
+              }
+              
+              h1{
+                font-size: 18px;
+              }
+              
+              #inputCidade{
+                border-radius: 20px;
+                border-width: 0px;
+                font-family:'Segoe UI';
+                width: 250px;
+                height: 40px;
+                margin-bottom: 7px;
+              
+              }
+              
+              #consultaCidade{
+                border-radius: 20px;
+                border: 0px;
+                width: 150px;
+                height: 30px;
+                box-shadow: 0 0 3px rgba(0, 0, 0, 0.292);
+              }
+              
+              #nomeCidade{
+                position: relative;
+                font-size: 25px;
+                margin-top: -15px;
+              }
+              
+              #tempAtual{
+                font-size: 32px;
+              }
+              
+              .labelDivCabecalho{
+                margin: 0px;
+              }
+              
+              #consultaCidade:hover{
+                background: gray;
+              }
+              
+              /*-----------------------------------------------*/
+              /*-----------------------------------------------*/
+              
+              /*------------Area - divCentral---------*/
+              .divCentral{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                top:10px;
+                margin: 0px;
+                padding: 10px;
+                height: 23%;
+                width: 100%;
+              }
+              
+              .containerDivCentral{
+                position: relative;
+                height: 180px;
+                width: 330px;
+                display: flex;
+                flex-direction: column;
+              }
+              
+              .prevhoraria{
+                position: sticky;
+                top: 215px;
+                display: flex;
+                justify-content: left;
+                padding-left: 22px;
+                background-color: grey;
+                color: rgb(162, 161, 161);
+                z-index: 1;
+                border-radius: 15px 15px 0 0;
+              }
+              
+              .containerScrollLateral{
+                position: absolute;
+                display: flex;
+                flex-direction:row;
+                
+                overflow-x: scroll;
+                background: rgba(64, 64, 64, 0.232);
+                text-align: center;
+              
+                height: 100%;
+                width: 100%;
+                border: 0px solid black;
+                border-radius: 15px; 
+              }
+              
+              
+              /*-----------Elementos - divCabecalho---------*/
+              
+              .scrollTemperatura,
+              .scrollIcone,
+              .scrollHora
+              {
+                display: grid;
+                grid-auto-flow: column;
+                place-content: center;
+                width: 90px;
+                padding: 3px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 20px;
+                height: 100%;
+              }
+              
+              .scrollLateralDivCentral{
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                font-size: 20px;
+                transition: linear 5s;
+              }
+              
+              /*-----------------------------------------------*/
+              /*-----------------------------------------------*/
+              
+              /*------------Area - divRodape---------*/
+              .divRodape{
+                position: relative;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                top:65%;
+                margin: 20px 0 20px 0;
+                width: 330px;
+                transition: linear 5s;
+              }
+              
+              .containerDivRodape{
+                display: flex;
+                flex-direction: column;
+                background: rgba(64, 64, 64, 0.232);
+                text-align: center;
+                width: 100%;
+                border-radius: 15px;
+                transition: linear 5s;
+              }
+              
+              .scrollVerticalDivCentral{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                flex-direction: row;
+                font-size: 20px;
+                height: 40px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                padding-left: 19px;
+                padding-right: 12px;
+                transition: linear 5s;
+              }
+              
+              .scrollDiaSemana,
+              .scrollNuvem{
+                display: flex;
+                justify-content: center;
+                width: 15%;
+              }
+              
+              .scrollTempMin,
+              .scrollTempMax{
+                display: flex;
+                justify-content: center;
+                width: 25%;
+                padding-right: 5px;
+                padding-left: 5px;
+                transition: linear 5s;
+              }
+              
+              .range{
+                background: firebrick; 
+              }
+              
+              .linhatemperatura{
+                position: relative;
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                flex-direction: column;
+                top:105%;
+                padding: 10px;
+                height: 5px;
+                width: 100%;
+                z-index: -1;
+                transition: linear 5s;
+              }
+              
+              .linhaMedia{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: 10px;
+                width: 110px;
+                background-color: grey;
+                border-radius: 10px;
+                transition: linear 5s;
+              }
+              
+              /* .linhaTemp{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: 10px;
+                width: 100px;
+                border: 1px solid ;
+                border-radius: 10px;
+                background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+                transition: linear 5s;
+              } */
+              
+              .pontoTempAtual{
+                position: relative;
+                display: flex;
+                top: 0%;
+                left: 49%;
+                height: 8.5px;
+                width: 2%;
+                border-radius: 10px;
+                background-color: white; 
+                transition: linear 5s;
+              }
+              
+              .prevdezdias{
+                position: sticky;
+                top: 215px;
+                display: flex;
+                justify-content: left;
+                padding-left: 22px;
+                background-color: grey;
+                border-radius: 15px 15px 0 0;
+                color: rgb(162, 161, 161);
+                z-index:1 ;
+                transition: linear 5s;
+              }
+              
+              .fa-calendar,
+              .fa-clock{
+                top:50%;
+                margin-top: 3px;
+                margin-right: 3px;
+                transition: linear 5s;
+              }
+              
+              .divisoriaTotal{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: 10px;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0);
+                border-radius: 10px;
+                transition: linear 5s;
+              }
+              
+              .divisoria{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: 2.1px;
+                width: 88%;
+                border-radius: 10px;
+                background-color: rgba(255, 255, 255, 0.427);
+                transition: linear 5s;
+              }
+              
+              
+              /*----Outros Itens------*/
+              .outrosItens{
+                position: relative;
+                flex-direction: row;
+                justify-content: center;
+                display: flex;
+                margin: 5px;
+                height: 750px;
+                width: 100%;
+              }
+              
+              .colunaUm,
+              .colunaDois{
+                position: relative;  
+                flex-direction: column;
+                display: flex;
+                height: 100%;
+                width: 90%;
+                border: 1px solid white;
+              }
+              
+              .indiceUV,
+              .porDoSol,
+              .vento,
+              .precipitacaoChuva,
+              .sensacaoTermica,
+              .umidade,
+              .visibilidade,
+              .pressao{
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: 170px;
+                width: 160px;
+                margin: 35px 10px 0px 5px ;
+                border: 1px solid white;
+                border-radius: 15px;
+                background: rgba(64, 64, 64, 0.232);
+                overflow-y: scroll;
+              }
+              
+              .tituloBox{
+                position: sticky;
+                top:0px;
+                height: 18px;
+                width: 100%;
+                display: flex;
+                justify-content: left;
+                padding-left: 22px;
+                background-color: grey;
+                color: rgb(162, 161, 161);
+                border-radius: 15px 15px 0 0;
+                z-index: 1;
+              }
+              
+              .conteudoBox{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                border: 1px solid black;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0 0 15px 15px;
+              }
+              
+              .valorIndiceUV,
+              .classificacaoIndiceUV,
+              .nivelIndiceUV,
+              .recomendacaoIndiceUV{
+                margin: 5px;
+              }
+              
+              .recomendacaoIndiceUV{
+                font-size: 13px;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+              }
+              
+              .linhaMediaIndiceUV{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                height: 10px;
+                width: 100px;
+                border: 1px solid ;
+                background-color: grey;
+                border-radius: 10px;
+                transition: linear 5s;
+              }
+              
+              /* .linhaIndiceUV{
+                position: absolute;
+                display: flex;
+                height: 10px;
+                width: 100px;
+                border: 1px solid ;
+                border-radius: 10px;
+                background-image: linear-gradient(to right, rgb(132, 210, 252),orange, red);
+                transition: linear 5s;
+              } */
+              
+              .pontoIndiceUVAtual{
+                position: absolute;
+                display: flex;
+                top: 0%;
+                left: 49%;
+                height: 8.5px;
+                width: 8.5px;
+                border-radius: 8.5px;
+                border: 1px solid black;
+                background-color: white; 
+                transition: linear 5s;
+              }
+              
+              .circuloVento{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                height: 100px;
+                width: 100px;
+                border-radius: 100px;
+                border:5px dashed rgba(0, 0, 0, 0.521);
+              }
+              
+              #direcaoBussola{
+                background: rgba(64, 64, 64);
+                margin: -3px;
+                font-size: 20px;
+              }
+              
+              .bussolaVentoX{
+                position: absolute;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                height: 100px;
+                width: 100px;
+              
+              }
+              
+              .bussolaVentoY{
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                height: 100px;
+                width: 100px;
+              }
+              
+              .velocidadeVento{
+                position: relative;
+                margin: 4px;
+              }
+
+              .pontoAtualdoSol{
+                position: absolute;
+                display: flex;
+                height: 8px;
+                width: 8px;
+                border-radius: 8px; 
+                background-color: white;
+                box-shadow: 0 0 3px 1px yellow;
+                transform: translate(`+b+`px, `+a+`px);
+                transition: linear 1s;
+              }
+
+              .linhaAtualdoSol{
+                position: absolute;
+                display: flex;
+                top: 82px;
+                height: 85px;
+                width: 100%;
+                background-color: rgba(0, 0, 0, 0.189); 
+              }`
+              ;
             
             document.head.appendChild(style); 
             
             
             }
 
-
+   
           }   
         
 
         }
       }
     
-      console.log(nomeCidade);  
+      
     
     }
 
